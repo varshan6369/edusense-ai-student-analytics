@@ -56,21 +56,21 @@ export const WhatIfSimulator: React.FC<WhatIfSimulatorProps> = ({
               ML & AI Factors Scenario Simulator
             </span>
           </div>
-          <h1 className="text-2xl font-black text-[#0F122A] tracking-tight">
+          <h1 className="text-2xl font-black text-[#1A1A2E] tracking-tight">
             What-if Performance Simulator
           </h1>
-          <p className="text-xs text-[#8A99AD] font-bold mt-1">
+          <p className="text-xs text-[#9B9BB8] font-bold mt-1">
             Adjust attendance, study habits, and sleep hours to observe real-time predicted score impact.
           </p>
         </div>
 
         {/* Student Selector */}
         <div className="bg-slate-50 border border-slate-200/50 p-2.5 rounded-2xl w-full sm:w-auto min-w-[200px]">
-          <label className="block text-[9px] font-black uppercase tracking-wider text-[#8A99AD] mb-1">Select Student</label>
+          <label className="block text-[9px] font-black uppercase tracking-wider text-[#9B9BB8] mb-1">Select Student</label>
           <select
             value={student.studentId}
             onChange={(e) => onSelectStudent(e.target.value)}
-            className="bg-white text-[#0F122A] text-xs font-bold rounded-xl px-3 py-1.5 border border-slate-200 outline-none w-full"
+            className="bg-white text-[#1A1A2E] text-xs font-bold rounded-xl px-3 py-1.5 border border-slate-200 outline-none w-full"
           >
             {allStudents.map((st) => (
               <option key={st.studentId} value={st.studentId}>
@@ -85,7 +85,7 @@ export const WhatIfSimulator: React.FC<WhatIfSimulatorProps> = ({
         {/* Sliders Control Panel */}
         <div className="lg:col-span-7 clay-card p-6 sm:p-8 space-y-6">
           <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-            <h3 className="font-black text-xs text-[#0F122A] uppercase tracking-wider flex items-center gap-2">
+            <h3 className="font-black text-xs text-[#1A1A2E] uppercase tracking-wider flex items-center gap-2">
               <Sliders className="w-5 h-5 text-indigo-500" />
               Adjust Behavioral Factors
             </h3>
@@ -100,7 +100,7 @@ export const WhatIfSimulator: React.FC<WhatIfSimulatorProps> = ({
           {/* Attendance Slider */}
           <div className="space-y-2">
             <div className="flex justify-between items-center text-xs font-bold">
-              <span className="text-[#4A5568]">Attendance Rate</span>
+              <span className="text-[#4A4A6A]">Attendance Rate</span>
               <span className={`text-xs font-black px-2.5 py-0.5 rounded-lg border ${attendance >= 75 ? 'bg-emerald-50 border-emerald-100 text-emerald-600' : 'bg-red-50 border-red-100 text-red-650'}`}>
                 {attendance}%
               </span>
@@ -114,7 +114,7 @@ export const WhatIfSimulator: React.FC<WhatIfSimulatorProps> = ({
               onChange={(e) => setAttendance(Number(e.target.value))}
               className="w-full accent-indigo-600 cursor-pointer h-1.5 bg-slate-100 rounded-lg appearance-none"
             />
-            <div className="flex justify-between text-[10px] text-[#8A99AD] font-bold">
+            <div className="flex justify-between text-[10px] text-[#9B9BB8] font-bold">
               <span>40% (Critical Absenteeism)</span>
               <span>75% (Target)</span>
               <span>100% (Perfect)</span>
@@ -124,7 +124,7 @@ export const WhatIfSimulator: React.FC<WhatIfSimulatorProps> = ({
           {/* Study Hours Slider */}
           <div className="space-y-2">
             <div className="flex justify-between items-center text-xs font-bold">
-              <span className="text-[#4A5568]">Self-Study Hours / Week</span>
+              <span className="text-[#4A4A6A]">Self-Study Hours / Week</span>
               <span className="text-xs font-black px-2.5 py-0.5 rounded-lg bg-indigo-50 border border-indigo-100 text-indigo-600">
                 {studyHours} hrs/wk
               </span>
@@ -138,7 +138,7 @@ export const WhatIfSimulator: React.FC<WhatIfSimulatorProps> = ({
               onChange={(e) => setStudyHours(Number(e.target.value))}
               className="w-full accent-indigo-600 cursor-pointer h-1.5 bg-slate-100 rounded-lg appearance-none"
             />
-            <div className="flex justify-between text-[10px] text-[#8A99AD] font-bold">
+            <div className="flex justify-between text-[10px] text-[#9B9BB8] font-bold">
               <span>0 hrs</span>
               <span>15 hrs (Recommended)</span>
               <span>35 hrs</span>
@@ -148,7 +148,7 @@ export const WhatIfSimulator: React.FC<WhatIfSimulatorProps> = ({
           {/* Sleep Hours Slider */}
           <div className="space-y-2">
             <div className="flex justify-between items-center text-xs font-bold">
-              <span className="text-[#4A5568]">Sleep Quality / Night</span>
+              <span className="text-[#4A4A6A]">Sleep Quality / Night</span>
               <span className="text-xs font-black px-2.5 py-0.5 rounded-lg bg-indigo-50 border border-indigo-100 text-indigo-600">
                 {sleepHours} hrs/night
               </span>
@@ -162,7 +162,7 @@ export const WhatIfSimulator: React.FC<WhatIfSimulatorProps> = ({
               onChange={(e) => setSleepHours(Number(e.target.value))}
               className="w-full accent-indigo-600 cursor-pointer h-1.5 bg-slate-100 rounded-lg appearance-none"
             />
-            <div className="flex justify-between text-[10px] text-[#8A99AD] font-bold">
+            <div className="flex justify-between text-[10px] text-[#9B9BB8] font-bold">
               <span>3 hrs (Deprived)</span>
               <span>8 hrs (Optimal)</span>
               <span>11 hrs</span>
@@ -171,7 +171,7 @@ export const WhatIfSimulator: React.FC<WhatIfSimulatorProps> = ({
 
           {/* Motivation Level Buttons */}
           <div className="space-y-2">
-            <label className="block text-xs font-bold text-[#4A5568]">
+            <label className="block text-xs font-bold text-[#4A4A6A]">
               Student Motivation Level
             </label>
             <div className="grid grid-cols-3 gap-2">
@@ -182,7 +182,7 @@ export const WhatIfSimulator: React.FC<WhatIfSimulatorProps> = ({
                   className={`py-2.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all border focus-ring cursor-pointer ${
                     motivation === lvl
                       ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm shadow-indigo-600/10'
-                      : 'bg-slate-50 text-[#8A99AD] border-slate-200/50 hover:bg-slate-100/50'
+                      : 'bg-slate-50 text-[#9B9BB8] border-slate-200/50 hover:bg-slate-100/50'
                   }`}
                 >
                   {lvl}
@@ -194,7 +194,7 @@ export const WhatIfSimulator: React.FC<WhatIfSimulatorProps> = ({
 
         {/* Live Simulation Output Panel */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="clay-card p-6 sm:p-8 space-y-6 bg-gradient-to-br from-indigo-600 via-purple-650 to-purple-650 border-0 text-white shadow-lg shadow-indigo-650/15">
+          <div className="glass-card p-6 sm:p-8 space-y-6 bg-gradient-to-br from-indigo-600 via-purple-650 to-purple-650 border-0 text-white shadow-lg shadow-indigo-650/15">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-black uppercase tracking-widest text-white/80 flex items-center gap-1.5">
                 <Sparkles className="w-4 h-4 text-white/90" /> Live Outcome Prediction
@@ -284,3 +284,5 @@ export const WhatIfSimulator: React.FC<WhatIfSimulatorProps> = ({
     </div>
   );
 };
+
+

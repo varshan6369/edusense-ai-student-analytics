@@ -26,7 +26,7 @@ export const DashboardSkeleton: React.FC = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="clay-card p-5 h-36 flex flex-col justify-between">
+          <div key={i} className="glass-card p-5 h-36 flex flex-col justify-between">
             <div className="space-y-2">
               <Skeleton className="h-3 w-24" />
               <Skeleton className="h-8 w-16" />
@@ -37,7 +37,7 @@ export const DashboardSkeleton: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="clay-card p-6 h-72 flex flex-col justify-between">
+        <div className="glass-card p-6 h-72 flex flex-col justify-between">
           <Skeleton className="h-5 w-40 mb-4" />
           <Skeleton className="h-48 w-full rounded-xl" />
         </div>
@@ -50,3 +50,5 @@ export const DashboardSkeleton: React.FC = () => {
     </div>
   );
 };
+
+

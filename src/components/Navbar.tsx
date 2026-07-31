@@ -1,16 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useAuth } from '../context/AuthContext';
-import {
-  Search,
-  Terminal,
-  Globe,
-  MessageCircle,
-  Sun,
-  Moon,
-  ChevronDown,
-  Shield,
-  UserCheck,
-} from 'lucide-react';
+import { Search, Terminal, Globe, MessageCircle } from 'lucide-react';
 
 interface NavbarProps {
   onOpenCommandPalette: () => void;
@@ -21,67 +11,58 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenCommandPalette,
   onToggleAICopilot,
 }) => {
-  const { user, activeStudent, allStudents, selectStudent, switchRole } = useAuth();
-  const [isDark, setIsDark] = useState<boolean>(() =>
-    document.documentElement.classList.contains('dark') ||
-    window.matchMedia('(prefers-color-scheme: dark)').matches
-  );
+  const { user, activeStudent } = useAuth();
 
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDark]);
+  const avatarSrc = user?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150';
 
   return (
-    <header className="glass-navbar px-6 py-3.5 flex items-center justify-between gap-4 shrink-0 shadow-sm">
-      {/* Search Bar */}
+    <header className="navbar-glass px-5 py-3 flex items-center justify-between gap-4 shrink-0">
+      {/* Left: Search */}
       <button
         onClick={onOpenCommandPalette}
-        className="flex items-center gap-3 px-4 py-2 rounded-full bg-white/40 border border-white/60 text-xs font-bold text-[#8A99AD] hover:text-[#0F122A] transition-all focus-ring cursor-text flex-1 max-w-[240px]"
-        aria-label="Open command palette"
+        className="flex items-center gap-2.5 flex-1 max-w-xs cursor-text focus-ring"
+        aria-label="Search"
       >
-        <Search className="w-3.5 h-3.5 shrink-0 text-[#8A99AD]" />
-        <span className="tracking-wide">Search anything...</span>
+        <Search className="w-4 h-4 text-[#9B9BB8] shrink-0" />
+        <span className="text-sm text-[#9B9BB8] font-medium">Search anything...</span>
+        <kbd className="ml-auto text-[10px] font-bold text-[#9B9BB8] bg-white/70 px-1.5 py-0.5 rounded-md border border-slate-200/60 shrink-0">
+          ⌘ K
+        </kbd>
       </button>
 
-      {/* Right controls: Terminal, Language, Contact, Profile */}
-      <div className="flex items-center gap-3">
+      {/* Right: Nav Pills + Avatar */}
+      <div className="flex items-center gap-2">
         {/* Terminal */}
         <button
           onClick={onOpenCommandPalette}
-          className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full text-[11px] font-bold text-[#4A5568] hover:text-[#0F122A] bg-white/40 hover:bg-white/70 transition-all border border-white/60 cursor-pointer focus-ring"
+          className="navbar-pill hidden sm:flex items-center gap-2 px-4 py-2 text-xs font-bold text-[#4A4A6A] uppercase tracking-wider"
         >
-          <Terminal className="w-3.5 h-3.5" />
-          <span className="tracking-wide">Terminal</span>
-          <kbd className="text-[9px] font-black text-[#8A99AD] bg-white/80 px-1.5 py-0.5 rounded-md border border-slate-200/50">
-            CTRL + K
+          <Terminal className="w-3.5 h-3.5 shrink-0" />
+          <span>Terminal</span>
+          <kbd className="text-[9px] font-black text-[#9B9BB8] bg-white/60 px-1.5 py-0.5 rounded border border-slate-200/50">
+            Ctrl+K
           </kbd>
         </button>
 
-        {/* Language Selector */}
-        <button
-          className="hidden md:flex items-center gap-2 px-3.5 py-2 rounded-full text-[11px] font-bold text-[#4A5568] hover:text-[#0F122A] bg-white/40 hover:bg-white/70 transition-all border border-white/60 cursor-pointer focus-ring"
-        >
-          <Globe className="w-3.5 h-3.5" />
-          <span className="tracking-wide">Language</span>
+        {/* Language */}
+        <button className="navbar-pill hidden md:flex items-center gap-2 px-4 py-2 text-xs font-bold text-[#4A4A6A] uppercase tracking-wider">
+          <Globe className="w-3.5 h-3.5 shrink-0" />
+          <span>Language</span>
         </button>
 
-        {/* Contact (triggers AI Copilot) */}
+        {/* Contact */}
         <button
           onClick={onToggleAICopilot}
-          className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full text-[11px] font-bold text-[#4A5568] hover:text-[#0F122A] bg-white/40 hover:bg-white/70 transition-all border border-white/60 cursor-pointer focus-ring"
+          className="navbar-pill hidden sm:flex items-center gap-2 px-4 py-2 text-xs font-bold text-[#4A4A6A] uppercase tracking-wider"
         >
-          <MessageCircle className="w-3.5 h-3.5" />
-          <span className="tracking-wide">Contact</span>
+          <MessageCircle className="w-3.5 h-3.5 shrink-0" />
+          <span>Contact</span>
         </button>
 
-        {/* Avatar gradient circle */}
-        <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-cyan-400 p-[2px] shadow-sm cursor-pointer ml-1">
+        {/* Avatar */}
+        <div className="w-9 h-9 rounded-full p-[2px] bg-gradient-to-tr from-[#6366F1] via-[#8B5CF6] to-[#22D3EE] shadow-sm cursor-pointer ml-1 shrink-0">
           <img
-            src={user?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150'}
+            src={avatarSrc}
             alt={user?.name || 'User'}
             className="w-full h-full rounded-full object-cover bg-white"
           />
@@ -90,3 +71,5 @@ export const Navbar: React.FC<NavbarProps> = ({
     </header>
   );
 };
+
+

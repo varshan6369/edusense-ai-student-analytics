@@ -112,21 +112,21 @@ export const ReportGenerator: React.FC<ReportGeneratorProps> = ({
               Automated Document Export
             </span>
           </div>
-          <h1 className="text-2xl font-black text-[#0F122A] tracking-tight">
+          <h1 className="text-2xl font-black text-[#1A1A2E] tracking-tight">
             Academic Reports & PDF Generator
           </h1>
-          <p className="text-xs text-[#8A99AD] font-bold mt-1">
+          <p className="text-xs text-[#9B9BB8] font-bold mt-1">
             Generate formal PDF reports for parents, teachers, and weekly progress reviews.
           </p>
         </div>
 
         {/* Student Selector */}
         <div className="bg-slate-50 border border-slate-200/50 p-2.5 rounded-2xl w-full sm:w-auto shrink-0 min-w-[200px]">
-          <label className="block text-[9px] font-black uppercase tracking-wider text-[#8A99AD] mb-1">Select Student</label>
+          <label className="block text-[9px] font-black uppercase tracking-wider text-[#9B9BB8] mb-1">Select Student</label>
           <select
             value={student.studentId}
             onChange={(e) => onSelectStudent(e.target.value)}
-            className="bg-white text-[#0F122A] text-xs font-bold rounded-xl px-3 py-1.5 border border-slate-200 outline-none w-full cursor-pointer"
+            className="bg-white text-[#1A1A2E] text-xs font-bold rounded-xl px-3 py-1.5 border border-slate-200 outline-none w-full cursor-pointer"
           >
             {allStudents.map((st) => (
               <option key={st.studentId} value={st.studentId}>
@@ -138,14 +138,14 @@ export const ReportGenerator: React.FC<ReportGeneratorProps> = ({
       </div>
 
       {/* Report Controls & Type Tabs */}
-      <div className="clay-card p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      <div className="glass-card p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div className="flex flex-wrap items-center gap-2 bg-slate-50 p-1.5 rounded-2xl border border-slate-200/50">
           <button
             onClick={() => setReportType('parent')}
             className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all focus-ring cursor-pointer ${
               reportType === 'parent'
                 ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-600/10'
-                : 'text-[#8A99AD] hover:text-[#0F122A]'
+                : 'text-[#9B9BB8] hover:text-[#1A1A2E]'
             }`}
           >
             Parent Report
@@ -155,7 +155,7 @@ export const ReportGenerator: React.FC<ReportGeneratorProps> = ({
             className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all focus-ring cursor-pointer ${
               reportType === 'weekly'
                 ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-600/10'
-                : 'text-[#8A99AD] hover:text-[#0F122A]'
+                : 'text-[#9B9BB8] hover:text-[#1A1A2E]'
             }`}
           >
             Weekly Summary
@@ -165,7 +165,7 @@ export const ReportGenerator: React.FC<ReportGeneratorProps> = ({
             className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all focus-ring cursor-pointer ${
               reportType === 'teacher'
                 ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-600/10'
-                : 'text-[#8A99AD] hover:text-[#0F122A]'
+                : 'text-[#9B9BB8] hover:text-[#1A1A2E]'
             }`}
           >
             Teacher Executive
@@ -189,15 +189,15 @@ export const ReportGenerator: React.FC<ReportGeneratorProps> = ({
               <GraduationCap className="w-7 h-7" />
             </div>
             <div>
-              <h2 className="text-xl font-black text-[#0F122A] tracking-tight leading-none mb-1.5">
+              <h2 className="text-xl font-black text-[#1A1A2E] tracking-tight leading-none mb-1.5">
                 EduSense Learning Analytics
               </h2>
-              <p className="text-xs text-[#8A99AD] font-bold">St. Jude Academy of STEM • Academic Term 2</p>
+              <p className="text-xs text-[#9B9BB8] font-bold">St. Jude Academy of STEM • Academic Term 2</p>
             </div>
           </div>
 
-          <div className="text-right text-xs text-[#8A99AD]">
-            <span className="font-black text-[#0F122A] block uppercase tracking-wider">
+          <div className="text-right text-xs text-[#9B9BB8]">
+            <span className="font-black text-[#1A1A2E] block uppercase tracking-wider">
               {reportType === 'parent'
                 ? 'Parent Progress Report'
                 : reportType === 'weekly'
@@ -211,19 +211,19 @@ export const ReportGenerator: React.FC<ReportGeneratorProps> = ({
         {/* Student Profile Block */}
         <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs shadow-[inset_1px_1px_2px_rgba(0,0,0,0.01)]">
           <div>
-            <span className="text-[#8A99AD] font-black uppercase tracking-wider block mb-1">Student Name</span>
-            <span className="font-black text-[#0F122A] text-sm leading-none">{student.name}</span>
+            <span className="text-[#9B9BB8] font-black uppercase tracking-wider block mb-1">Student Name</span>
+            <span className="font-black text-[#1A1A2E] text-sm leading-none">{student.name}</span>
           </div>
           <div>
-            <span className="text-[#8A99AD] font-black uppercase tracking-wider block mb-1">Student ID</span>
-            <span className="font-black text-[#0F122A] text-sm leading-none">{student.studentId}</span>
+            <span className="text-[#9B9BB8] font-black uppercase tracking-wider block mb-1">Student ID</span>
+            <span className="font-black text-[#1A1A2E] text-sm leading-none">{student.studentId}</span>
           </div>
           <div>
-            <span className="text-[#8A99AD] font-black uppercase tracking-wider block mb-1">Class & Stream</span>
-            <span className="font-black text-[#0F122A] text-sm leading-none">{student.class}</span>
+            <span className="text-[#9B9BB8] font-black uppercase tracking-wider block mb-1">Class & Stream</span>
+            <span className="font-black text-[#1A1A2E] text-sm leading-none">{student.class}</span>
           </div>
           <div>
-            <span className="text-[#8A99AD] font-black uppercase tracking-wider block mb-1">Risk Status</span>
+            <span className="text-[#9B9BB8] font-black uppercase tracking-wider block mb-1">Risk Status</span>
             <span
               className={`font-black text-sm leading-none ${
                 student.atRisk ? 'text-red-500' : 'text-emerald-500'
@@ -236,20 +236,20 @@ export const ReportGenerator: React.FC<ReportGeneratorProps> = ({
 
         {/* Performance Metrics Table */}
         <div className="space-y-3">
-          <h3 className="font-black text-xs text-[#8A99AD] uppercase tracking-wider">
+          <h3 className="font-black text-xs text-[#9B9BB8] uppercase tracking-wider">
             Current Factor Breakdown
           </h3>
           <div className="grid grid-cols-3 gap-4 text-center">
             <div className="p-4 bg-indigo-50 border border-indigo-100 rounded-2xl shadow-sm">
-              <span className="text-[10px] font-black uppercase tracking-wider text-[#8A99AD] block mb-1">Attendance Rate</span>
+              <span className="text-[10px] font-black uppercase tracking-wider text-[#9B9BB8] block mb-1">Attendance Rate</span>
               <span className="text-xl font-black text-indigo-600">{student.attendance}%</span>
             </div>
             <div className="p-4 bg-purple-50 border border-purple-100 rounded-2xl shadow-sm">
-              <span className="text-[10px] font-black uppercase tracking-wider text-[#8A99AD] block mb-1">Weekly Study Hours</span>
+              <span className="text-[10px] font-black uppercase tracking-wider text-[#9B9BB8] block mb-1">Weekly Study Hours</span>
               <span className="text-xl font-black text-purple-650">{student.studyHours} hrs/wk</span>
             </div>
             <div className="p-4 bg-cyan-50 border border-cyan-100 rounded-2xl shadow-sm">
-              <span className="text-[10px] font-black uppercase tracking-wider text-[#8A99AD] block mb-1">Sleep Quality</span>
+              <span className="text-[10px] font-black uppercase tracking-wider text-[#9B9BB8] block mb-1">Sleep Quality</span>
               <span className="text-xl font-black text-cyan-600">{student.sleepHours} hrs/night</span>
             </div>
           </div>
@@ -268,3 +268,5 @@ export const ReportGenerator: React.FC<ReportGeneratorProps> = ({
     </div>
   );
 };
+
+

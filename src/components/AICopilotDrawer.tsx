@@ -110,12 +110,12 @@ export const AICopilotView: React.FC<AICopilotProps> = ({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="font-black text-sm text-[#0F122A]">AI Copilot</h3>
+              <h3 className="font-black text-sm text-[#1A1A2E]">AI Copilot</h3>
               <span className="text-[9px] font-black px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-600 uppercase tracking-wider">
                 Gemini RAG
               </span>
             </div>
-            <p className="text-[11px] text-[#8A99AD] font-bold mt-0.5">
+            <p className="text-[11px] text-[#9B9BB8] font-bold mt-0.5">
               {activeStudent ? `Context: ${activeStudent.name}` : 'Class Dataset Loaded'}
             </p>
           </div>
@@ -124,7 +124,7 @@ export const AICopilotView: React.FC<AICopilotProps> = ({
         {isDrawer && onClose && (
           <button
             onClick={onClose}
-            className="p-2 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer text-[#8A99AD] hover:text-[#0F122A] focus-ring border border-transparent hover:border-slate-200"
+            className="p-2 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer text-[#9B9BB8] hover:text-[#1A1A2E] focus-ring border border-transparent hover:border-slate-200"
           >
             <X className="w-5 h-5" />
           </button>
@@ -160,13 +160,13 @@ export const AICopilotView: React.FC<AICopilotProps> = ({
                 className={`max-w-[80%] p-4 text-xs sm:text-sm leading-relaxed font-medium ${
                   m.sender === 'user'
                     ? 'bg-gradient-to-tr from-indigo-500 to-purple-600 text-white rounded-3xl rounded-br-sm shadow-[0_8px_20px_-4px_rgba(99,102,241,0.35)]'
-                    : 'clay-card rounded-3xl rounded-bl-sm text-[#4A5568] whitespace-pre-wrap'
+                    : 'glass-card rounded-3xl rounded-bl-sm text-[#4A4A6A] whitespace-pre-wrap'
                 }`}
               >
                 {m.text}
                 <div
                   className={`text-[10px] mt-1.5 font-bold ${
-                    m.sender === 'user' ? 'text-indigo-200 text-right' : 'text-[#8A99AD]'
+                    m.sender === 'user' ? 'text-indigo-200 text-right' : 'text-[#9B9BB8]'
                   }`}
                 >
                   {m.timestamp}
@@ -180,7 +180,7 @@ export const AICopilotView: React.FC<AICopilotProps> = ({
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex items-center gap-3 text-xs font-bold text-[#8A99AD] p-2"
+            className="flex items-center gap-3 text-xs font-bold text-[#9B9BB8] p-2"
           >
             <div className="flex gap-1">
               {[0, 150, 300].map((delay) => (
@@ -257,3 +257,5 @@ export const AICopilotView: React.FC<AICopilotProps> = ({
 
   return <div className="h-[calc(100vh-160px)] min-h-[520px]">{contentMarkup}</div>;
 };
+
+

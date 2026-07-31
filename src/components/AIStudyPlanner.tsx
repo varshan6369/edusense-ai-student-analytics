@@ -67,10 +67,10 @@ export const AIStudyPlanner: React.FC<AIStudyPlannerProps> = ({
               Gemini Automated Study Engine
             </span>
           </div>
-          <h1 className="text-2xl font-black text-[#0F122A] tracking-tight">
+          <h1 className="text-2xl font-black text-[#1A1A2E] tracking-tight">
             AI Weekly Study Planner
           </h1>
-          <p className="text-xs text-[#8A99AD] font-bold mt-1">
+          <p className="text-xs text-[#9B9BB8] font-bold mt-1">
             Generates a personalized daily study routine tailored to weak subjects and target goals.
           </p>
         </div>
@@ -80,7 +80,7 @@ export const AIStudyPlanner: React.FC<AIStudyPlannerProps> = ({
           <select
             value={student.studentId}
             onChange={(e) => onSelectStudent(e.target.value)}
-            className="bg-slate-50 text-[#0F122A] text-xs font-bold rounded-xl px-3 py-2.5 border border-slate-200 outline-none w-full sm:w-auto cursor-pointer"
+            className="bg-slate-50 text-[#1A1A2E] text-xs font-bold rounded-xl px-3 py-2.5 border border-slate-200 outline-none w-full sm:w-auto cursor-pointer"
           >
             {allStudents.map((st) => (
               <option key={st.studentId} value={st.studentId}>
@@ -111,25 +111,25 @@ export const AIStudyPlanner: React.FC<AIStudyPlannerProps> = ({
       {plan ? (
         <div className="space-y-6">
           {/* Plan Info Card */}
-          <div className="clay-card p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="glass-card p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <span className="text-[10px] font-black text-indigo-650 uppercase tracking-wider">
                 Weekly Target Goal
               </span>
-              <h2 className="text-xl font-black text-[#0F122A] mt-0.5 leading-none">
+              <h2 className="text-xl font-black text-[#1A1A2E] mt-0.5 leading-none">
                 {plan.weeklyGoal}
               </h2>
-              <p className="text-xs text-[#8A99AD] font-bold mt-1.5">
-                Target Allocation: <span className="font-extrabold text-[#0F122A]">{plan.totalTargetHours} Hours</span> total across 7 days.
+              <p className="text-xs text-[#9B9BB8] font-bold mt-1.5">
+                Target Allocation: <span className="font-extrabold text-[#1A1A2E]">{plan.totalTargetHours} Hours</span> total across 7 days.
               </p>
             </div>
 
             <div className="flex items-center gap-2">
               <button
                 onClick={() => alert('Plan copied to clipboard!')}
-                className="flex items-center gap-1.5 px-3.5 py-2 bg-slate-50 hover:bg-slate-100/50 text-[#0F122A] text-xs font-bold rounded-xl transition-all border border-slate-200/50 focus-ring cursor-pointer shadow-sm"
+                className="flex items-center gap-1.5 px-3.5 py-2 bg-slate-50 hover:bg-slate-100/50 text-[#1A1A2E] text-xs font-bold rounded-xl transition-all border border-slate-200/50 focus-ring cursor-pointer shadow-sm"
               >
-                <Share2 className="w-4 h-4 text-[#8A99AD]" /> Save to Keep
+                <Share2 className="w-4 h-4 text-[#9B9BB8]" /> Save to Keep
               </button>
             </div>
           </div>
@@ -144,7 +144,7 @@ export const AIStudyPlanner: React.FC<AIStudyPlannerProps> = ({
                 <div className="p-2 bg-indigo-600 text-white rounded-xl text-xs font-black shrink-0 shadow-sm shadow-indigo-600/10">
                   #{idx + 1}
                 </div>
-                <p className="text-xs text-[#4A5568] font-bold leading-relaxed">
+                <p className="text-xs text-[#4A4A6A] font-bold leading-relaxed">
                   {adv}
                 </p>
               </div>
@@ -156,11 +156,11 @@ export const AIStudyPlanner: React.FC<AIStudyPlannerProps> = ({
             {plan.schedule.map((dayItem, dIdx) => (
               <div
                 key={dIdx}
-                className="clay-card p-5 space-y-3"
+                className="glass-card p-5 space-y-3"
               >
                 <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
                   <div>
-                    <span className="font-black text-[#0F122A] text-base leading-none block">
+                    <span className="font-black text-[#1A1A2E] text-base leading-none block">
                       {dayItem.day}
                     </span>
                     <span className="text-[10px] text-indigo-600 font-extrabold uppercase tracking-wider mt-1 block">
@@ -178,13 +178,13 @@ export const AIStudyPlanner: React.FC<AIStudyPlannerProps> = ({
                   </span>
                 </div>
 
-                <div className="flex items-center gap-1.5 text-xs text-[#8A99AD] font-bold">
+                <div className="flex items-center gap-1.5 text-xs text-[#9B9BB8] font-bold">
                   <Clock className="w-3.5 h-3.5 text-indigo-500" />
-                  <span>Topic: <span className="text-[#4A5568]">{dayItem.topic}</span> ({dayItem.durationMinutes} mins)</span>
+                  <span>Topic: <span className="text-[#4A4A6A]">{dayItem.topic}</span> ({dayItem.durationMinutes} mins)</span>
                 </div>
 
                 <div className="space-y-2 pt-1">
-                  <span className="text-[9px] font-black text-[#8A99AD] uppercase tracking-wider block">
+                  <span className="text-[9px] font-black text-[#9B9BB8] uppercase tracking-wider block">
                     Action Tasks
                   </span>
                   {dayItem.tasks.map((task, tIdx) => {
@@ -197,13 +197,13 @@ export const AIStudyPlanner: React.FC<AIStudyPlannerProps> = ({
                         className={`w-full flex items-start gap-2.5 p-2 rounded-xl text-left text-xs transition-colors border ${
                           isDone
                             ? 'bg-emerald-55/40 border-emerald-100 text-emerald-600 line-through font-bold'
-                            : 'bg-slate-50 border-slate-100 text-[#4A5568] hover:bg-slate-100/50 font-bold'
+                            : 'bg-slate-50 border-slate-100 text-[#4A4A6A] hover:bg-slate-100/50 font-bold'
                         }`}
                       >
                         {isDone ? (
                           <CheckSquare className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                         ) : (
-                          <Square className="w-4 h-4 text-[#8A99AD] shrink-0 mt-0.5" />
+                          <Square className="w-4 h-4 text-[#9B9BB8] shrink-0 mt-0.5" />
                         )}
                         <span>{task}</span>
                       </button>
@@ -221,10 +221,10 @@ export const AIStudyPlanner: React.FC<AIStudyPlannerProps> = ({
             <ListTodo className="w-8 h-8" />
           </div>
           <div>
-            <h3 className="font-black text-[#0F122A] text-lg leading-none">
+            <h3 className="font-black text-[#1A1A2E] text-lg leading-none">
               No Weekly Plan Generated Yet
             </h3>
-            <p className="text-xs text-[#8A99AD] font-bold max-w-md mx-auto mt-2">
+            <p className="text-xs text-[#9B9BB8] font-bold max-w-md mx-auto mt-2">
               Click "Generate 7-Day Plan" above to trigger Gemini RAG analysis based on {student.name}'s attendance and test scores.
             </p>
           </div>
@@ -241,3 +241,5 @@ export const AIStudyPlanner: React.FC<AIStudyPlannerProps> = ({
     </div>
   );
 };
+
+

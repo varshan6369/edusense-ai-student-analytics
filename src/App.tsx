@@ -29,16 +29,18 @@ const AppContent: React.FC = () => {
   const role = user?.role || 'teacher';
 
   return (
-    <div className="min-h-screen bg-[var(--bg-app)] text-[var(--text-primary)] flex flex-col md:flex-row relative overflow-hidden font-sans selection:bg-indigo-600 selection:text-white p-4 gap-4 md:p-6 md:gap-6 w-full max-w-[1600px] mx-auto">
-      {/* Ambient background glow dots (mesh gradient effect) */}
-      <div className="bg-glow top-[-100px] left-[-100px] opacity-40 dark:opacity-60" />
-      <div className="bg-glow bottom-[-150px] right-[-100px] opacity-30 dark:opacity-45" />
+    <div className="min-h-screen bg-[#EEEEF8] text-[#1A1A2E] flex flex-col md:flex-row relative overflow-hidden font-sans selection:bg-indigo-600 selection:text-white p-4 gap-5 md:p-6 md:gap-6 w-full max-w-[1600px] mx-auto">
+      {/* Subtle ambient blobs */}
+      <div className="pointer-events-none fixed inset-0 overflow-hidden -z-10">
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-gradient-radial from-indigo-200/30 to-transparent blur-3xl" />
+        <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full bg-gradient-radial from-purple-200/25 to-transparent blur-3xl" />
+      </div>
 
       {/* Left Sidebar Menu */}
       <Sidebar activeTab={activeTab} onTabChange={setActiveTab} role={role} />
 
       {/* Right Column: Navbar + Main Content */}
-      <div className="flex-1 flex flex-col gap-4 md:gap-6 min-w-0 z-10">
+      <div className="flex-1 flex flex-col gap-5 md:gap-5 min-w-0 z-10">
         {/* Top Navbar */}
         <Navbar
           onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}

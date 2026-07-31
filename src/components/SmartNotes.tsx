@@ -72,31 +72,31 @@ export const SmartNotes: React.FC = () => {
               AI Smart Notes & Assessment Generator
             </span>
           </div>
-          <h1 className="text-2xl font-black text-[#0F122A] tracking-tight">
+          <h1 className="text-2xl font-black text-[#1A1A2E] tracking-tight">
             Smart Notes & Interactive Quiz
           </h1>
-          <p className="text-xs text-[#8A99AD] font-bold mt-1">
+          <p className="text-xs text-[#9B9BB8] font-bold mt-1">
             Paste lecture transcripts or notes. Gemini AI extracts key concepts, generates quizzes & flashcards.
           </p>
         </div>
       </div>
 
       {/* Input Area */}
-      <div className="clay-card p-6 space-y-4">
+      <div className="glass-card p-6 space-y-4">
         <div>
-          <label className="block text-xs font-bold text-[#4A5568] mb-1">
+          <label className="block text-xs font-bold text-[#4A4A6A] mb-1">
             Topic / Note Title
           </label>
           <input
             type="text"
             value={noteTitle}
             onChange={(e) => setNoteTitle(e.target.value)}
-            className="w-full bg-slate-50 border border-slate-200/50 text-xs sm:text-sm font-semibold rounded-xl p-3 text-[#0F122A] outline-none shadow-[inset_1px_1px_2px_rgba(0,0,0,0.02)] focus-ring"
+            className="w-full bg-slate-50 border border-slate-200/50 text-xs sm:text-sm font-semibold rounded-xl p-3 text-[#1A1A2E] outline-none shadow-[inset_1px_1px_2px_rgba(0,0,0,0.02)] focus-ring"
           />
         </div>
 
         <div>
-          <label className="block text-xs font-bold text-[#4A5568] mb-1">
+          <label className="block text-xs font-bold text-[#4A4A6A] mb-1">
             Lecture Content or Textbook Text
           </label>
           <textarea
@@ -104,7 +104,7 @@ export const SmartNotes: React.FC = () => {
             value={noteText}
             onChange={(e) => setNoteText(e.target.value)}
             placeholder="Paste raw notes or textbook excerpt here..."
-            className="w-full bg-slate-50 border border-slate-200/50 text-xs sm:text-sm rounded-xl p-3 text-[#0F122A] outline-none shadow-[inset_1px_1px_2px_rgba(0,0,0,0.02)] focus-ring"
+            className="w-full bg-slate-50 border border-slate-200/50 text-xs sm:text-sm rounded-xl p-3 text-[#1A1A2E] outline-none shadow-[inset_1px_1px_2px_rgba(0,0,0,0.02)] focus-ring"
           />
         </div>
 
@@ -131,14 +131,14 @@ export const SmartNotes: React.FC = () => {
           {/* Summary & Key Concepts Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* AI Summary */}
-            <div className="clay-card p-6 space-y-3">
-              <h3 className="font-black text-xs text-[#0F122A] tracking-wider uppercase flex items-center gap-2">
+            <div className="glass-card p-6 space-y-3">
+              <h3 className="font-black text-xs text-[#1A1A2E] tracking-wider uppercase flex items-center gap-2">
                 <BookOpen className="w-5 h-5 text-indigo-500" />
                 Executive Summary
               </h3>
               <ul className="space-y-2.5">
                 {result.summary.map((point, idx) => (
-                  <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#4A5568] font-bold">
+                  <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#4A4A6A] font-bold">
                     <span className="w-2 h-2 rounded-full bg-indigo-500 mt-1.5 shrink-0" />
                     <span>{point}</span>
                   </li>
@@ -147,8 +147,8 @@ export const SmartNotes: React.FC = () => {
             </div>
 
             {/* Key Concepts */}
-            <div className="clay-card p-6 space-y-3">
-              <h3 className="font-black text-xs text-[#0F122A] tracking-wider uppercase flex items-center gap-2">
+            <div className="glass-card p-6 space-y-3">
+              <h3 className="font-black text-xs text-[#1A1A2E] tracking-wider uppercase flex items-center gap-2">
                 <Layers className="w-5 h-5 text-purple-500" />
                 Key Concepts Glossary
               </h3>
@@ -156,7 +156,7 @@ export const SmartNotes: React.FC = () => {
                 {result.keyConcepts.map((kc, idx) => (
                   <div key={idx} className="p-3 bg-slate-50 border border-slate-100 rounded-xl text-xs space-y-0.5">
                     <span className="font-black text-indigo-600">{kc.concept}</span>
-                    <p className="text-[#4A5568] font-bold leading-relaxed">{kc.definition}</p>
+                    <p className="text-[#4A4A6A] font-bold leading-relaxed">{kc.definition}</p>
                   </div>
                 ))}
               </div>
@@ -164,14 +164,14 @@ export const SmartNotes: React.FC = () => {
           </div>
 
           {/* Practice Quiz */}
-          <div className="clay-card p-6 sm:p-8 space-y-6">
+          <div className="glass-card p-6 sm:p-8 space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-black text-sm text-[#0F122A] tracking-wider uppercase flex items-center gap-2">
+                <h3 className="font-black text-sm text-[#1A1A2E] tracking-wider uppercase flex items-center gap-2">
                   <HelpCircle className="w-5 h-5 text-indigo-500" />
                   AI Practice Knowledge Quiz
                 </h3>
-                <p className="text-xs text-[#8A99AD] font-bold">Test your comprehension on the generated notes</p>
+                <p className="text-xs text-[#9B9BB8] font-bold">Test your comprehension on the generated notes</p>
               </div>
 
               {!showQuizResults ? (
@@ -187,7 +187,7 @@ export const SmartNotes: React.FC = () => {
                     setShowQuizResults(false);
                     setUserAnswers({});
                   }}
-                  className="px-4 py-2 bg-slate-50 border border-slate-200 text-[#0F122A] text-xs font-bold rounded-xl transition-all focus-ring cursor-pointer"
+                  className="px-4 py-2 bg-slate-50 border border-slate-200 text-[#1A1A2E] text-xs font-bold rounded-xl transition-all focus-ring cursor-pointer"
                 >
                   Retry Quiz
                 </button>
@@ -204,14 +204,14 @@ export const SmartNotes: React.FC = () => {
                     key={q.id}
                     className="p-5 bg-slate-50 border border-slate-200/50 rounded-2xl space-y-3 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.01)]"
                   >
-                    <div className="font-black text-[#0F122A] text-xs uppercase tracking-wider">
+                    <div className="font-black text-[#1A1A2E] text-xs uppercase tracking-wider">
                       {qIdx + 1}. {q.question}
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {q.options.map((opt, oIdx) => {
                         const isSelected = selectedOpt === oIdx;
-                        let optionStyle = 'bg-white text-[#4A5568] border-slate-200 hover:border-indigo-300 shadow-sm';
+                        let optionStyle = 'bg-white text-[#4A4A6A] border-slate-200 hover:border-indigo-300 shadow-sm';
 
                         if (showQuizResults) {
                           if (oIdx === q.correctIndex) {
@@ -250,11 +250,11 @@ export const SmartNotes: React.FC = () => {
 
           {/* Flashcards Section */}
           <div className="space-y-4">
-            <h3 className="font-black text-sm text-[#0F122A] tracking-wider uppercase flex items-center gap-2">
+            <h3 className="font-black text-sm text-[#1A1A2E] tracking-wider uppercase flex items-center gap-2">
               <Layers className="w-5 h-5 text-indigo-500" />
               Interactive Revision Flashcards
             </h3>
-            <p className="text-xs text-[#8A99AD] font-bold">Click any card to flip between Question and Answer</p>
+            <p className="text-xs text-[#9B9BB8] font-bold">Click any card to flip between Question and Answer</p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {result.flashcards.map((fc) => {
@@ -267,12 +267,12 @@ export const SmartNotes: React.FC = () => {
                       isFlipped ? 'bg-indigo-50/50 border-indigo-200/80' : 'bg-white'
                     }`}
                   >
-                    <div className="flex items-center justify-between text-[9px] font-black uppercase tracking-wider text-[#8A99AD]">
+                    <div className="flex items-center justify-between text-[9px] font-black uppercase tracking-wider text-[#9B9BB8]">
                       <span>{fc.category}</span>
                       <span className={isFlipped ? 'text-indigo-600 font-black' : ''}>{isFlipped ? 'Answer' : 'Question'}</span>
                     </div>
 
-                    <div className="text-xs sm:text-sm font-bold text-[#0F122A] text-center my-auto leading-relaxed">
+                    <div className="text-xs sm:text-sm font-bold text-[#1A1A2E] text-center my-auto leading-relaxed">
                       {isFlipped ? fc.back : fc.front}
                     </div>
 
@@ -289,3 +289,5 @@ export const SmartNotes: React.FC = () => {
     </div>
   );
 };
+
+

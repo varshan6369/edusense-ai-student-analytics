@@ -40,10 +40,10 @@ export const GamificationView: React.FC<GamificationViewProps> = ({
               Student Engagement Engine
             </span>
           </div>
-          <h1 className="text-2xl font-black text-[#0F122A] tracking-tight">
+          <h1 className="text-2xl font-black text-[#1A1A2E] tracking-tight">
             XP, Badges & Class Leaderboard
           </h1>
-          <p className="text-xs text-[#8A99AD] font-bold mt-1">
+          <p className="text-xs text-[#9B9BB8] font-bold mt-1">
             Earn XP by maintaining 75%+ attendance, completing study plans, and keeping up streaks!
           </p>
         </div>
@@ -59,45 +59,45 @@ export const GamificationView: React.FC<GamificationViewProps> = ({
       {/* Student Badge Deck */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* XP & Level */}
-        <div className="clay-card p-6 space-y-3">
+        <div className="glass-card p-6 space-y-3">
           <div className="flex items-center justify-between text-slate-500">
-            <span className="text-[10px] font-black uppercase tracking-wider text-[#8A99AD]">Total XP & Level</span>
+            <span className="text-[10px] font-black uppercase tracking-wider text-[#9B9BB8]">Total XP & Level</span>
             <Zap className="w-5 h-5 text-amber-500" />
           </div>
-          <div className="text-3xl font-black text-[#0F122A] leading-none">
-            {student.xp} <span className="text-sm font-bold text-[#8A99AD]">XP</span>
+          <div className="text-3xl font-black text-[#1A1A2E] leading-none">
+            {student.xp} <span className="text-sm font-bold text-[#9B9BB8]">XP</span>
           </div>
-          <p className="text-xs text-[#8A99AD] font-bold">Level {student.level} Scholar</p>
+          <p className="text-xs text-[#9B9BB8] font-bold">Level {student.level} Scholar</p>
         </div>
 
         {/* Study Streak */}
-        <div className="clay-card p-6 space-y-3">
+        <div className="glass-card p-6 space-y-3">
           <div className="flex items-center justify-between text-slate-500">
-            <span className="text-[10px] font-black uppercase tracking-wider text-[#8A99AD]">Active Study Streak</span>
+            <span className="text-[10px] font-black uppercase tracking-wider text-[#9B9BB8]">Active Study Streak</span>
             <Flame className="w-5 h-5 text-orange-500 fill-orange-500 animate-bounce" />
           </div>
-          <div className="text-3xl font-black text-[#0F122A] leading-none">
-            {student.streak} <span className="text-sm font-bold text-[#8A99AD]">Days</span>
+          <div className="text-3xl font-black text-[#1A1A2E] leading-none">
+            {student.streak} <span className="text-sm font-bold text-[#9B9BB8]">Days</span>
           </div>
-          <p className="text-xs text-[#8A99AD] font-bold">Keep study streak active daily!</p>
+          <p className="text-xs text-[#9B9BB8] font-bold">Keep study streak active daily!</p>
         </div>
 
         {/* Badges Unlocked */}
-        <div className="clay-card p-6 space-y-3">
+        <div className="glass-card p-6 space-y-3">
           <div className="flex items-center justify-between text-slate-500">
-            <span className="text-[10px] font-black uppercase tracking-wider text-[#8A99AD]">Badges Earned</span>
+            <span className="text-[10px] font-black uppercase tracking-wider text-[#9B9BB8]">Badges Earned</span>
             <Award className="w-5 h-5 text-indigo-500" />
           </div>
-          <div className="text-3xl font-black text-[#0F122A] leading-none">
-            {student.badges.length} <span className="text-sm font-bold text-[#8A99AD]">Badges</span>
+          <div className="text-3xl font-black text-[#1A1A2E] leading-none">
+            {student.badges.length} <span className="text-sm font-bold text-[#9B9BB8]">Badges</span>
           </div>
-          <p className="text-xs text-[#8A99AD] font-bold">Unlocked across STEM modules</p>
+          <p className="text-xs text-[#9B9BB8] font-bold">Unlocked across STEM modules</p>
         </div>
       </div>
 
       {/* Badges Cards Grid */}
-      <div className="clay-card p-6 space-y-4">
-        <h3 className="font-black text-xs text-[#0F122A] uppercase tracking-wider">
+      <div className="glass-card p-6 space-y-4">
+        <h3 className="font-black text-xs text-[#1A1A2E] uppercase tracking-wider">
           Unlocked Academic Achievements
         </h3>
         {student.badges.length > 0 ? (
@@ -111,20 +111,20 @@ export const GamificationView: React.FC<GamificationViewProps> = ({
                   {b.icon}
                 </div>
                 <div>
-                  <h4 className="font-black text-[#0F122A] text-xs sm:text-sm">{b.title}</h4>
-                  <p className="text-[11px] text-[#8A99AD] font-bold leading-tight mt-0.5">{b.description}</p>
+                  <h4 className="font-black text-[#1A1A2E] text-xs sm:text-sm">{b.title}</h4>
+                  <p className="text-[11px] text-[#9B9BB8] font-bold leading-tight mt-0.5">{b.description}</p>
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          <p className="text-xs text-[#8A99AD] font-bold italic">No badges unlocked yet. Complete daily study tasks to earn badges!</p>
+          <p className="text-xs text-[#9B9BB8] font-bold italic">No badges unlocked yet. Complete daily study tasks to earn badges!</p>
         )}
       </div>
 
       {/* Class Leaderboard */}
-      <div className="clay-card p-6 space-y-4">
-        <h3 className="font-black text-xs text-[#0F122A] tracking-wider uppercase flex items-center gap-2">
+      <div className="glass-card p-6 space-y-4">
+        <h3 className="font-black text-xs text-[#1A1A2E] tracking-wider uppercase flex items-center gap-2">
           <Crown className="w-5 h-5 text-amber-500" />
           Class STEM Leaderboard
         </h3>
@@ -159,8 +159,8 @@ export const GamificationView: React.FC<GamificationViewProps> = ({
                   className="w-10 h-10 rounded-full object-cover border border-slate-250 bg-white"
                 />
                 <div>
-                  <div className="font-extrabold text-[#0F122A] text-sm leading-none mb-1">{st.name}</div>
-                  <div className="text-[10px] text-[#8A99AD] font-black uppercase tracking-wider">{st.class} • Level {st.level}</div>
+                  <div className="font-extrabold text-[#1A1A2E] text-sm leading-none mb-1">{st.name}</div>
+                  <div className="text-[10px] text-[#9B9BB8] font-black uppercase tracking-wider">{st.class} • Level {st.level}</div>
                 </div>
               </div>
 
@@ -175,3 +175,5 @@ export const GamificationView: React.FC<GamificationViewProps> = ({
     </div>
   );
 };
+
+
