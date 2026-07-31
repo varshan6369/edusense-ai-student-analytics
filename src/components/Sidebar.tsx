@@ -59,7 +59,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange, role }
 
       {/* Navigation */}
       <nav className="flex-1 space-y-1 overflow-y-auto pr-0.5">
-        {menuItems.map((item) => {
+        {menuItems.map((item, idx) => {
           const Icon = item.icon;
           const isActive = activeTab === item.id;
           return (
@@ -67,10 +67,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange, role }
               key={item.id}
               onClick={() => onTabChange(item.id === 'students' ? 'dashboard' : item.id)}
               aria-current={isActive ? 'page' : undefined}
-              className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-[14px] text-sm font-semibold transition-all duration-200 cursor-pointer text-left focus-ring ${
+              style={{ animationDelay: `${idx * 40}ms` }}
+              className={`spring-in w-full flex items-center gap-3 px-3.5 py-2.5 rounded-[14px] text-sm font-semibold transition-all duration-200 cursor-pointer text-left focus-ring ${
                 isActive
                   ? 'nav-active'
-                  : 'text-[#9B9BB8] hover:text-[#1A1A2E] hover:bg-white/60'
+                  : 'text-[#9B9BB8] hover:text-[#1A1A2E] hover:bg-white/60 hover:shadow-[2px_3px_10px_rgba(130,130,190,0.12)]'
               }`}
             >
               <Icon
@@ -78,7 +79,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange, role }
                   isActive ? 'text-white' : 'text-[#9B9BB8]'
                 }`}
               />
-              <span className={isActive ? 'text-white' : ''}>{item.label}</span>
+              <span className={`truncate ${isActive ? 'text-white' : ''}`}>{item.label}</span>
             </button>
           );
         })}

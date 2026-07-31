@@ -81,7 +81,7 @@ const Sparkline: React.FC<{ data: { v: number }[]; color: string }> = ({ data, c
   </LineChart>
 );
 
-/* Stat Card — exact design: icon left, big number, subtitle, trend badge + sparkline bottom */
+/* Stat Card — clay 3D inflated surface */
 const StatCard: React.FC<{
   label: string; value: string; sub: string;
   icon: React.ReactNode; iconBg: string; iconColor: string;
@@ -92,11 +92,11 @@ const StatCard: React.FC<{
     initial={{ opacity: 0, y: 16 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay, type: 'spring', stiffness: 280, damping: 24 }}
-    className="stat-card p-5 flex flex-col gap-3"
+    className="clay-card p-5 flex flex-col gap-3"
   >
     {/* Top: icon + label + value */}
-    <div className="flex items-start gap-3">
-      <div className={`w-10 h-10 rounded-[14px] flex items-center justify-center shrink-0 ${iconBg}`}>
+    <div className="flex items-start gap-3 relative z-10">
+      <div className={`w-10 h-10 rounded-[14px] flex items-center justify-center shrink-0 shadow-[inset_1px_1px_2px_rgba(255,255,255,0.9),_2px_3px_8px_rgba(130,130,190,0.15)] ${iconBg}`}>
         <span className={iconColor}>{icon}</span>
       </div>
       <div>
@@ -106,7 +106,7 @@ const StatCard: React.FC<{
       </div>
     </div>
     {/* Bottom: trend + sparkline */}
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between relative z-10">
       <span className={`text-[11px] font-bold flex items-center gap-0.5 ${trendUp ? 'text-emerald-500' : 'text-red-400'}`}>
         <ArrowUpRight className={`w-3 h-3 ${!trendUp ? 'rotate-180' : ''}`} />
         {trend}
@@ -173,9 +173,9 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ student, onN
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 280, damping: 24 }}
-          className="glass-card p-7 flex items-center justify-between overflow-hidden relative min-h-[200px]"
+          className="glass-card glass-glint p-7 flex items-center justify-between overflow-hidden relative min-h-[200px]"
         >
-          <div className="z-10">
+          <div className="z-10 relative">
             <p className="text-[#6366F1] font-bold text-base mb-1">{getGreeting()}</p>
             <h1 className="text-[40px] font-black text-[#1A1A2E] leading-none tracking-tight mb-3">
               {displayName} 👋
@@ -186,27 +186,37 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ student, onN
             <div className="flex items-center gap-2 mt-5 text-[11px] text-[#9B9BB8] font-semibold">
               <CalendarDays className="w-3.5 h-3.5 text-[#6366F1]" />
               <span>{formattedDate}</span>
-              <span className="ml-2 px-2.5 py-1 bg-[#EEF2FF] text-[#6366F1] font-bold rounded-full text-[10px]">
+              <span className="ml-2 px-2.5 py-1 bg-[#EEF2FF] text-[#6366F1] font-bold rounded-full text-[10px] border border-indigo-100">
                 {student.studyHours > 0 ? `${student.studyHours * 2} tasks today` : '12 tasks today'}
               </span>
             </div>
           </div>
 
-          {/* 3D Portal Visual */}
-          <div className="absolute right-0 bottom-0 w-48 h-48 pointer-events-none select-none">
-            <img
-              src="https://cdn.dribbble.com/userupload/12302729/file/original-b048ef84b8b54b4f5e94e62e2dbbb0db.png"
-              alt="3D Portal"
-              className="w-full h-full object-contain object-right-bottom opacity-90"
-              onError={(e) => {
-                // fallback: decorative gradient orb
-                (e.target as HTMLImageElement).style.display = 'none';
-              }}
+          {/* 3D Glassmorphic Portal Orb — pure CSS, no external image */}
+          <div className="absolute right-6 bottom-0 w-44 h-44 pointer-events-none select-none" aria-hidden>
+            {/* Outer ring */}
+            <div className="absolute inset-0 rounded-full border-[3px] border-indigo-200/40 blur-[0.5px]" />
+            {/* Glass arch */}
+            <div className="absolute inset-4 rounded-full bg-gradient-to-br from-indigo-200/50 via-purple-200/30 to-transparent backdrop-blur-sm border border-white/60"
+              style={{ boxShadow: 'inset 2px 2px 8px rgba(255,255,255,0.6), 0 8px 32px rgba(99,102,241,0.2)' }}
             />
-            {/* Fallback decorative orb */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-32 h-32 rounded-full bg-gradient-to-tr from-indigo-300/40 via-purple-300/40 to-pink-200/30 blur-2xl" />
-              <div className="absolute w-24 h-24 rounded-full border-4 border-indigo-200/50 border-dashed animate-spin" style={{ animationDuration: '12s' }} />
+            {/* Inner glow core */}
+            <div className="absolute inset-8 rounded-full bg-gradient-to-tr from-white/80 to-indigo-100/60"
+              style={{ boxShadow: 'inset 1px 1px 4px rgba(255,255,255,0.9), 0 4px 16px rgba(139,92,246,0.25)' }}
+            />
+            {/* Specular highlight dot */}
+            <div className="absolute top-8 left-10 w-4 h-4 rounded-full bg-white/80 blur-[2px]" />
+            {/* Cloud base blobs */}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+              <div className="w-10 h-5 rounded-full bg-white/60 backdrop-blur-sm border border-white/50"
+                style={{ boxShadow: 'inset 1px 1px 3px rgba(255,255,255,0.8), 0 2px 8px rgba(99,102,241,0.12)' }}
+              />
+              <div className="w-14 h-6 rounded-full bg-white/70 backdrop-blur-sm border border-white/60"
+                style={{ boxShadow: 'inset 1px 1px 3px rgba(255,255,255,0.9), 0 3px 10px rgba(99,102,241,0.15)' }}
+              />
+              <div className="w-8 h-4 rounded-full bg-white/55 backdrop-blur-sm border border-white/50"
+                style={{ boxShadow: 'inset 1px 1px 2px rgba(255,255,255,0.7), 0 2px 6px rgba(99,102,241,0.10)' }}
+              />
             </div>
           </div>
         </motion.div>
@@ -216,7 +226,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ student, onN
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.08, type: 'spring', stiffness: 280, damping: 24 }}
-          className="glass-card p-6 flex flex-col gap-4"
+          className="glass-card glass-glint p-6 flex flex-col gap-4"
         >
           {/* Header */}
           <div>
@@ -305,7 +315,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ student, onN
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.36, type: 'spring', stiffness: 280, damping: 24 }}
-          className="glass-card p-6"
+          className="clay-card p-6"
         >
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
@@ -365,7 +375,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ student, onN
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.42, type: 'spring', stiffness: 280, damping: 24 }}
-          className="glass-card p-6"
+          className="clay-card p-6"
         >
           <div className="flex items-center gap-2 mb-4">
             <TrendingUp className="w-4 h-4 text-[#6366F1]" />
