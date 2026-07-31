@@ -105,23 +105,23 @@ export const ReportGenerator: React.FC<ReportGeneratorProps> = ({
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white border border-slate-200/60 p-6 rounded-3xl shadow-sm">
+      <div className="glass-card p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[10px] font-black px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-600 uppercase tracking-wider">
+            <span className="accent-pill">
               Automated Document Export
             </span>
           </div>
           <h1 className="text-2xl font-black text-[#1A1A2E] tracking-tight">
             Academic Reports & PDF Generator
           </h1>
-          <p className="text-xs text-[#9B9BB8] font-bold mt-1">
+          <p className="text-xs text-[#9B9BB8] font-semibold mt-1">
             Generate formal PDF reports for parents, teachers, and weekly progress reviews.
           </p>
         </div>
 
         {/* Student Selector */}
-        <div className="bg-slate-50 border border-slate-200/50 p-2.5 rounded-2xl w-full sm:w-auto shrink-0 min-w-[200px]">
+        <div className="bg-slate-50/70 border border-slate-200/50 p-2.5 rounded-2xl w-full sm:w-auto shrink-0 min-w-[200px]">
           <label className="block text-[9px] font-black uppercase tracking-wider text-[#9B9BB8] mb-1">Select Student</label>
           <select
             value={student.studentId}

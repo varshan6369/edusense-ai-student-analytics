@@ -65,17 +65,17 @@ export const SmartNotes: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white border border-slate-200/60 p-6 rounded-3xl shadow-sm">
+      <div className="glass-card p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[10px] font-black px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-600 uppercase tracking-wider">
+            <span className="accent-pill">
               AI Smart Notes & Assessment Generator
             </span>
           </div>
           <h1 className="text-2xl font-black text-[#1A1A2E] tracking-tight">
             Smart Notes & Interactive Quiz
           </h1>
-          <p className="text-xs text-[#9B9BB8] font-bold mt-1">
+          <p className="text-xs text-[#9B9BB8] font-semibold mt-1">
             Paste lecture transcripts or notes. Gemini AI extracts key concepts, generates quizzes & flashcards.
           </p>
         </div>
