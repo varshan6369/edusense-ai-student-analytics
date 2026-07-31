@@ -51,7 +51,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange, role }
       <div className="mb-7 px-1">
         <div className="flex items-center gap-1">
           <span className="font-black text-xl tracking-[0.18em] text-[#1A1A2E]" style={{ fontFamily: 'Outfit, sans-serif' }}>
-            LUCIFER
+            EDUSENSE
           </span>
           <span className="w-2 h-2 rounded-full bg-[#6366F1] mt-0.5 shrink-0" />
         </div>
