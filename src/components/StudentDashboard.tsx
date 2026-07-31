@@ -90,14 +90,23 @@ const StatCard: React.FC<{
   sparkData: { v: number }[]; sparkColor: string; delay: number;
 }> = ({ label, value, sub, icon, iconBg, iconColor, trend, trendUp, sparkData, sparkColor, delay }) => (
   <motion.div
-    initial={{ opacity: 0, y: 16 }}
+    initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay, type: 'spring', stiffness: 280, damping: 24 }}
-    className="clay-card p-5 flex flex-col gap-3"
+    whileHover={{
+      y: -6,
+      scale: 1.015,
+      rotateX: 3,
+      rotateY: -2,
+      transition: { type: 'spring', stiffness: 400, damping: 20 }
+    }}
+    whileTap={{ scale: 0.97, y: 0 }}
+    style={{ perspective: 800 }}
+    className="stat-card p-5 flex flex-col gap-3 cursor-pointer"
   >
     {/* Top: icon + label + value */}
     <div className="flex items-start gap-3 relative z-10">
-      <div className={`w-10 h-10 rounded-[14px] flex items-center justify-center shrink-0 shadow-[inset_1px_1px_2px_rgba(255,255,255,0.9),_2px_3px_8px_rgba(130,130,190,0.15)] ${iconBg}`}>
+      <div className={`w-10 h-10 rounded-[14px] flex items-center justify-center shrink-0 shadow-[inset_1px_1px_2px_rgba(255,255,255,0.9),_2px_3px_8px_rgba(120,120,190,0.14)] ${iconBg}`}>
         <span className={iconColor}>{icon}</span>
       </div>
       <div>
@@ -174,6 +183,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ student, onN
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 280, damping: 24 }}
+          whileHover={{ y: -5, scale: 1.006, transition: { type: 'spring', stiffness: 350, damping: 22 } }}
           className="glass-card glass-glint p-7 flex items-center justify-between overflow-hidden relative min-h-[200px]"
         >
           <div className="z-10 relative">
@@ -204,6 +214,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ student, onN
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.08, type: 'spring', stiffness: 280, damping: 24 }}
+          whileHover={{ y: -5, scale: 1.006, transition: { type: 'spring', stiffness: 350, damping: 22 } }}
           className="glass-card glass-glint p-6 flex flex-col gap-4"
         >
           {/* Header */}

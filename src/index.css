@@ -1,427 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════
-   EDUSENSE DESIGN SYSTEM — Premium Glass + Clay + 3D Effects
-   Light Theme  ·  Indigo/Purple accent palette
+   EDUSENSE DESIGN SYSTEM v3.0
+   Reference: Clean white clay cards + subtle glass panels
+   Light lavender background · Indigo accent
 ═══════════════════════════════════════════════════════════════ */
 
 @theme {
   --font-display: 'Outfit', 'Plus Jakarta Sans', sans-serif;
-  --font-sans:    'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* ─── CSS TOKENS ─────────────────────────────────────────────── */
+/* ─── GLOBAL BASE ────────────────────────────────────────────── */
 @layer base {
   :root {
-    /* Background: very pale lavender — exact from design */
     --bg-app:   #EEEEF8;
-    --bg-tint:  #E8E8F4;
-
-    /* Accent / Primary */
-    --accent:       #6366F1;
-    --accent-hover: #4F46E5;
-    --accent-light: rgba(99, 102, 241, 0.08);
-    --accent-glow:  rgba(99, 102, 241, 0.35);
-
-    /* Text */
-    --text-h:    #1A1A2E;   /* headings  */
-    --text-body: #3D3D5C;   /* body text */
-    --text-mute: #9B9BB8;   /* muted     */
-
-    /* ── Glass physics ──────────────────────────────────────── */
-    /* Base glass plate — white frosted */
-    --glass-bg:           rgba(255, 255, 255, 0.72);
-    --glass-border-top:   rgba(255, 255, 255, 0.95);
-    --glass-border-side:  rgba(255, 255, 255, 0.50);
-    --glass-border-bot:   rgba(200, 200, 230, 0.30);
-    /* Outer depth shadow (ambient occlusion) */
-    --glass-shadow-outer: 0 4px 32px rgba(99,102,241,0.08),
-                          0 1px 6px  rgba(99,102,241,0.04),
-                          0 0  0 0.5px rgba(200,200,230,0.4);
-    /* Inner rim light (simulates refracted light from top-left) */
-    --glass-shadow-inner: inset 0 1px 0 rgba(255,255,255,0.9),
-                          inset 1px 0 0 rgba(255,255,255,0.5),
-                          inset 0 -1px 0 rgba(200,200,230,0.15);
-
-    /* ── Sidebar glass (slightly more opaque) ───────────────── */
-    --sidebar-bg: rgba(255, 255, 255, 0.88);
-    --sidebar-shadow: 4px 0 40px rgba(99,102,241,0.08),
-                      0 0 0 0.5px rgba(200,200,230,0.4);
-
-    /* ── Claymorphism — soft inflated 3D surface ────────────── */
-    /* The "clay" look = raised bump from top-left light source  */
-    --clay-bg:    #FFFFFF;
-    --clay-shadow:
-      /* Outer depth: soft drop shadow bottom-right */
-      8px  12px 32px rgba(130,130,190,0.22),
-      4px   6px 16px rgba(130,130,190,0.14),
-      /* Rim highlight: hard white from top-left */
-      -3px -3px  8px rgba(255,255,255,0.95),
-      /* Inner specular highlight (inflate effect) */
-      inset 2px 2px 4px rgba(255,255,255,1.00),
-      inset -2px -2px 5px rgba(130,130,190,0.10);
-
-    /* ── Stat card — thinner clay ───────────────────────────── */
-    --stat-shadow:
-      4px   8px 20px rgba(130,130,190,0.18),
-      2px   3px  8px rgba(130,130,190,0.10),
-      -2px -2px  6px rgba(255,255,255,0.90),
-      inset 1.5px 1.5px 3px rgba(255,255,255,1.00),
-      inset -1.5px -1.5px 4px rgba(130,130,190,0.08);
-
-    /* ── Navbar glass ─── */
-    --navbar-bg:     rgba(255,255,255,0.60);
-    --navbar-blur:   blur(24px) saturate(200%);
-    --navbar-shadow: 0 2px 24px rgba(99,102,241,0.07),
-                     0 0 0 0.5px rgba(200,200,230,0.5),
-                     inset 0 1px 0 rgba(255,255,255,0.9);
+    --accent:   #6366F1;
+    --accent-2: #8B5CF6;
+    --text-h:   #1A1A2E;
+    --text-b:   #3D3D5C;
+    --text-m:   #9B9BB8;
   }
 
-  /* Force light mode always — never allow dark */
   html { color-scheme: light; }
   .dark { color-scheme: light; }
 
   *, *::before, *::after { box-sizing: border-box; }
 
   body {
-    font-family: var(--font-sans);
-    background-color: var(--bg-app);
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    background-color: #EEEEF8;
+    /* Subtle mesh gradient matching reference */
     background-image:
-      radial-gradient(ellipse 80% 60% at 10% 5%,  rgba(120,120,220,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 50% at 90% 90%, rgba(160,100,240,0.10) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(99,102,241,0.04) 0%, transparent 70%);
-    color: var(--text-h);
+      radial-gradient(ellipse 70% 50% at 8% 10%, rgba(150,140,255,0.10) 0%, transparent 55%),
+      radial-gradient(ellipse 55% 45% at 92% 88%, rgba(180,140,255,0.09) 0%, transparent 55%);
+    color: #1A1A2E;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
+  h1, h2, h3, h4 {
+    font-family: 'Outfit', sans-serif;
     font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--text-h);
+    color: #1A1A2E;
   }
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   GLASS CARD — Primary surface (main panels, dashboard widgets)
-   Multi-layer glass plate with proper refraction + rim light
+   GLASS CARD — frosted glass panel (welcome, AI copilot, charts)
+   Matches reference: semi-transparent white with blur + rim light
 ═══════════════════════════════════════════════════════════════ */
 .glass-card {
-  /* Frosted glass surface */
-  background: var(--glass-bg);
-  backdrop-filter: blur(24px) saturate(180%) brightness(1.04);
-  -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(1.04);
-
-  /* Gradient border to simulate glass edge refraction */
-  border: 1px solid transparent;
-  background-clip: padding-box;
-  border-radius: 20px;
-
-  /* Layered glass plate effect with gradient rim */
+  background: rgba(255, 255, 255, 0.70);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 22px;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 2px 0 0 rgba(255,255,255,0.90) inset,
+    1px 0 0 0 rgba(255,255,255,0.60) inset,
+    0 8px 32px rgba(99, 102, 241, 0.08),
+    0 2px 8px  rgba(99, 102, 241, 0.04),
+    0 1px 2px  rgba(0, 0, 0, 0.03);
+  transition:
+    transform  0.30s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.30s ease;
+  will-change: transform, box-shadow;
   position: relative;
-  box-shadow: var(--glass-shadow-outer), var(--glass-shadow-inner);
-  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.28s ease;
   isolation: isolate;
+  overflow: hidden;
 }
 
-/* Top-left glass glint — simulates light hitting the glass edge */
-.glass-card::before {
+/* Top-edge glint — the bright line from the reference image */
+.glass-card::after {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  border: 1px solid transparent;
-  background: linear-gradient(135deg,
-    rgba(255,255,255,0.90) 0%,
-    rgba(255,255,255,0.40) 20%,
-    transparent              50%,
-    rgba(200,200,230,0.20) 80%,
-    rgba(200,200,230,0.30) 100%
-  ) border-box;
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box,
-                linear-gradient(#fff 0 0);
-  -webkit-mask-composite: destination-out;
-  mask-composite: exclude;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,255,255,0.95) 30%,
+    rgba(255,255,255,0.95) 70%,
+    transparent 100%
+  );
+  border-radius: 22px 22px 0 0;
   pointer-events: none;
-  z-index: 0;
 }
 
 .glass-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px) scale(1.008);
   box-shadow:
-    0 10px 48px rgba(99,102,241,0.13),
-    0  4px 12px rgba(99,102,241,0.06),
-    0  0   0 0.5px rgba(200,200,230,0.4),
-    var(--glass-shadow-inner);
+    0 2px 0 0 rgba(255,255,255,0.95) inset,
+    1px 0 0 0 rgba(255,255,255,0.70) inset,
+    0 20px 60px rgba(99, 102, 241, 0.14),
+    0  8px 24px rgba(99, 102, 241, 0.08),
+    0  2px  6px rgba(0, 0, 0, 0.04);
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   CLAY CARD — Inflated 3D soft clay surface
-   Neumorphic lift with soft light sourcing
+   CLAY CARD — pure white inflated 3D surface for stat cards
+   Matches reference: white, raised, multi-directional soft shadow
 ═══════════════════════════════════════════════════════════════ */
 .clay-card {
-  background: var(--clay-bg);
-  border-radius: 24px;
-  border: 1px solid rgba(255,255,255,0.90);
-  box-shadow: var(--clay-shadow);
-  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.28s ease;
+  background: #FFFFFF;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 1.0);
+  /* Multi-layer shadow = outer depth + rim highlight + inner inflate */
+  box-shadow:
+    /* Rim highlight top-left (light source) */
+    -2px -3px 8px  rgba(255, 255, 255, 1.0),
+    /* Outer ambient drop shadow */
+    6px  10px 24px rgba(120, 120, 190, 0.18),
+    3px   5px 12px rgba(120, 120, 190, 0.12),
+    1px   2px  4px rgba(120, 120, 190, 0.08),
+    /* Inner inflate specular */
+    inset 2px  2px 5px rgba(255, 255, 255, 1.0),
+    inset -1px -1px 4px rgba(120, 120, 190, 0.08);
+  transition:
+    transform  0.30s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.30s ease;
+  will-change: transform, box-shadow;
   position: relative;
   isolation: isolate;
+  overflow: hidden;
 }
 
+/* Clay surface sheen — bright diagonal sweep top-left */
 .clay-card::before {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(145deg,
-    rgba(255,255,255,0.60) 0%,
-    rgba(255,255,255,0.00) 40%,
-    transparent 100%
+  top: 0; left: 0;
+  width: 55%; height: 55%;
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.70) 0%,
+    rgba(255,255,255,0.00) 60%
   );
+  border-radius: inherit;
   pointer-events: none;
-  z-index: 0;
 }
 
 .clay-card:hover {
-  transform: translateY(-4px) scale(1.005);
+  transform: translateY(-6px) scale(1.012);
   box-shadow:
-    12px 18px 48px rgba(130,130,190,0.26),
-    6px  10px 24px rgba(130,130,190,0.16),
-    -4px -4px 12px rgba(255,255,255,0.95),
-    inset 2px 2px 4px rgba(255,255,255,1.00),
-    inset -2px -2px 5px rgba(130,130,190,0.10);
+    -3px  -4px 12px rgba(255, 255, 255, 1.0),
+    10px  16px 40px rgba(120, 120, 190, 0.22),
+     5px   8px 20px rgba(120, 120, 190, 0.15),
+     2px   3px  6px rgba(120, 120, 190, 0.10),
+    inset 2px  2px 5px rgba(255, 255, 255, 1.0),
+    inset -1px -1px 4px rgba(120, 120, 190, 0.08);
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   STAT CARD — Thinner clay card for KPI widgets
+   STAT CARD — same as clay-card, for KPI grid
 ═══════════════════════════════════════════════════════════════ */
 .stat-card {
   background: #FFFFFF;
   border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.92);
-  box-shadow: var(--stat-shadow);
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 1.0);
+  box-shadow:
+    -2px -3px 8px  rgba(255, 255, 255, 1.0),
+    5px   8px 20px rgba(120, 120, 190, 0.16),
+    2px   4px 10px rgba(120, 120, 190, 0.10),
+    1px   1px  3px rgba(120, 120, 190, 0.06),
+    inset 1.5px  1.5px 4px rgba(255, 255, 255, 1.0),
+    inset -1px  -1px   3px rgba(120, 120, 190, 0.07);
+  transition:
+    transform  0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.28s ease;
+  will-change: transform, box-shadow;
   position: relative;
-  overflow: hidden;
   isolation: isolate;
+  overflow: hidden;
 }
 
-/* Glass sheen sweep on stat card */
 .stat-card::before {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0; left: 0;
+  width: 50%; height: 50%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.65) 0%, transparent 55%);
   border-radius: inherit;
-  background: linear-gradient(135deg,
-    rgba(255,255,255,0.55) 0%,
-    rgba(255,255,255,0.00) 50%
-  );
   pointer-events: none;
 }
 
 .stat-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px) scale(1.015);
   box-shadow:
-    6px 14px 32px rgba(130,130,190,0.24),
-    3px  5px 12px rgba(130,130,190,0.14),
-    -3px -3px 8px rgba(255,255,255,0.95),
-    inset 1.5px 1.5px 3px rgba(255,255,255,1.00),
-    inset -1.5px -1.5px 4px rgba(130,130,190,0.08);
+    -3px  -4px  12px rgba(255, 255, 255, 1.0),
+    8px   14px  32px rgba(120, 120, 190, 0.20),
+    4px    6px  16px rgba(120, 120, 190, 0.13),
+    1px    2px   5px rgba(120, 120, 190, 0.08),
+    inset 1.5px 1.5px 4px rgba(255, 255, 255, 1.0),
+    inset -1px -1px  3px rgba(120, 120, 190, 0.07);
 }
 
+/* Accent top border on stat-card hover (color flash) */
+.stat-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 2.5px;
+  background: linear-gradient(90deg, #6366F1, #8B5CF6);
+  border-radius: 0 0 4px 4px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.stat-card:hover::after { opacity: 1; }
+
 /* ═══════════════════════════════════════════════════════════════
-   SIDEBAR — Deep glass panel with frosted white finish
+   SIDEBAR CARD
 ═══════════════════════════════════════════════════════════════ */
 .sidebar-card {
-  background: var(--sidebar-bg);
-  backdrop-filter: blur(32px) saturate(160%) brightness(1.02);
-  -webkit-backdrop-filter: blur(32px) saturate(160%) brightness(1.02);
-  border-radius: 28px;
-  border: 1px solid rgba(255,255,255,0.92);
-  box-shadow: var(--sidebar-shadow),
-    inset 1px 0 0 rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border-radius: 26px;
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 2px 0 0 rgba(255,255,255,0.95) inset,
+    0 8px 40px rgba(99, 102, 241, 0.09),
+    0 2px  8px rgba(99, 102, 241, 0.05),
+    0 1px  2px rgba(0, 0, 0, 0.03);
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   NAVBAR — Ultra-thin glass pill
+   NAVBAR GLASS
 ═══════════════════════════════════════════════════════════════ */
 .navbar-glass,
 .glass-navbar {
-  background: var(--navbar-bg);
-  backdrop-filter: var(--navbar-blur);
-  -webkit-backdrop-filter: var(--navbar-blur);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-radius: 18px;
-  border: 1px solid transparent;
-  box-shadow: var(--navbar-shadow);
-  position: relative;
-}
-
-.navbar-glass::before,
-.glass-navbar::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  border: 1px solid transparent;
-  background: linear-gradient(135deg,
-    rgba(255,255,255,0.85) 0%,
-    rgba(255,255,255,0.20) 30%,
-    transparent 60%
-  ) border-box;
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box,
-                linear-gradient(#fff 0 0);
-  -webkit-mask-composite: destination-out;
-  mask-composite: exclude;
-  pointer-events: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 2px 0 0 rgba(255,255,255,0.90) inset,
+    0 6px 24px rgba(99, 102, 241, 0.07),
+    0 1px  4px rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.25s ease;
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   NAV ACTIVE PILL — Solid indigo filled, glowing
+   ACTIVE NAV PILL
 ═══════════════════════════════════════════════════════════════ */
 .nav-active {
   background: linear-gradient(135deg, #6366F1 0%, #7C3AED 100%);
   color: #FFFFFF !important;
   border-radius: 14px;
   box-shadow:
-    0  4px 16px rgba(99,102,241,0.40),
-    0  2px  6px rgba(99,102,241,0.25),
-    inset 0 1px 0 rgba(255,255,255,0.25),
-    inset 0 -1px 0 rgba(0,0,0,0.10);
+    0  5px 18px rgba(99, 102, 241, 0.42),
+    0  2px  6px rgba(99, 102, 241, 0.28),
+    inset 0 1px 0 rgba(255,255,255,0.22);
 }
 .nav-active svg { color: #FFFFFF !important; }
 
 /* ═══════════════════════════════════════════════════════════════
-   CLAY CARD SUB — Small clay surface (nested cards, input wrappers)
+   SUGGESTION CHIPS — reference: white bordered pill buttons
 ═══════════════════════════════════════════════════════════════ */
-.clay-card-sub {
-  background: rgba(245, 245, 255, 0.70);
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.85);
+.suggestion-chip {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1.5px solid rgba(200, 200, 235, 0.55);
+  border-radius: 14px;
   box-shadow:
-    3px 5px 14px rgba(130,130,190,0.14),
-    -1.5px -1.5px 5px rgba(255,255,255,0.90),
-    inset 1px 1px 3px rgba(255,255,255,0.95),
-    inset -1px -1px 3px rgba(130,130,190,0.08);
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   PRIMARY BUTTON — Gradient clay button
-═══════════════════════════════════════════════════════════════ */
-.btn-primary,
-.clay-btn {
-  background: linear-gradient(135deg, #6366F1 0%, #7C3AED 100%);
-  color: #FFFFFF;
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 12px;
-  font-weight: 700;
-  box-shadow:
-    0  6px 20px rgba(99,102,241,0.45),
-    0  2px  6px rgba(99,102,241,0.25),
-    inset 0  1px 0 rgba(255,255,255,0.28),
-    inset 0 -1px 0 rgba(0,0,0,0.12);
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.2s ease;
+    0 2px 10px rgba(120, 120, 190, 0.10),
+    inset 0 1px 0 rgba(255,255,255,0.90);
+  transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
 }
-
-.btn-primary:hover,
-.clay-btn:hover {
+.suggestion-chip:hover {
+  background: #FFFFFF;
+  border-color: rgba(99, 102, 241, 0.28);
+  box-shadow:
+    0 6px 20px rgba(99, 102, 241, 0.13),
+    inset 0 1px 0 rgba(255,255,255,0.95);
   transform: translateY(-2px);
-  box-shadow:
-    0  10px 28px rgba(99,102,241,0.50),
-    0   4px 10px rgba(99,102,241,0.28),
-    inset 0  1px 0 rgba(255,255,255,0.32),
-    inset 0 -1px 0 rgba(0,0,0,0.12);
 }
-
-.btn-primary:active,
-.clay-btn:active {
-  transform: translateY(1px);
-  box-shadow:
-    0  2px  8px rgba(99,102,241,0.35),
-    inset 0  2px 4px rgba(0,0,0,0.15);
+.suggestion-chip:active {
+  transform: translateY(0px) scale(0.97);
 }
 
 /* ═══════════════════════════════════════════════════════════════
    NAVBAR PILL BUTTONS (Terminal · Language · Contact)
 ═══════════════════════════════════════════════════════════════ */
 .navbar-pill {
-  background: rgba(255,255,255,0.55);
-  border: 1px solid rgba(200,200,230,0.45);
+  background: rgba(255,255,255,0.60);
+  border: 1px solid rgba(200,200,230,0.50);
   border-radius: 12px;
   backdrop-filter: blur(8px);
   box-shadow:
-    2px 3px 10px rgba(130,130,190,0.10),
-    inset 0 1px 0 rgba(255,255,255,0.80);
-  transition: all 0.2s ease;
+    0 2px 8px rgba(120,120,190,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.85);
+  transition: all 0.22s ease;
   cursor: pointer;
-  color: var(--text-body);
+  color: #3D3D5C;
   font-weight: 600;
 }
 .navbar-pill:hover {
-  background: rgba(255,255,255,0.82);
-  border-color: rgba(99,102,241,0.22);
+  background: rgba(255,255,255,0.90);
+  border-color: rgba(99,102,241,0.25);
   box-shadow:
-    2px 4px 16px rgba(99,102,241,0.12),
-    inset 0 1px 0 rgba(255,255,255,0.90);
+    0 4px 16px rgba(99,102,241,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.95);
   color: #1A1A2E;
+  transform: translateY(-1px);
+}
+.navbar-pill:active {
+  transform: translateY(0px) scale(0.97);
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   AI INPUT — Recessed glass input trough
+   PRIMARY BUTTON — gradient clay button with press effect
+═══════════════════════════════════════════════════════════════ */
+.btn-primary,
+.clay-btn {
+  background: linear-gradient(135deg, #6366F1 0%, #7C3AED 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 14px;
+  font-weight: 700;
+  box-shadow:
+    0 6px 20px rgba(99,102,241,0.45),
+    0 2px  6px rgba(99,102,241,0.28),
+    inset 0 1px 0 rgba(255,255,255,0.25);
+  transition:
+    transform  0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.22s ease;
+  cursor: pointer;
+}
+.btn-primary:hover,
+.clay-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 10px 28px rgba(99,102,241,0.50),
+    0  4px 10px rgba(99,102,241,0.30),
+    inset 0 1px 0 rgba(255,255,255,0.30);
+}
+.btn-primary:active,
+.clay-btn:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow:
+    0  2px  8px rgba(99,102,241,0.35),
+    inset 0 2px 4px rgba(0,0,0,0.18);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   AI INPUT FIELD — recessed inset glass
 ═══════════════════════════════════════════════════════════════ */
 .ai-input {
-  background: rgba(238,238,248,0.55);
-  border: 1px solid rgba(200,200,230,0.50);
+  background: rgba(240, 240, 252, 0.60);
+  border: 1.5px solid rgba(200, 200, 235, 0.55);
   border-radius: 14px;
   box-shadow:
-    inset 2px 2px 6px rgba(150,150,200,0.15),
-    inset -1px -1px 3px rgba(255,255,255,0.70),
-    0 1px 4px rgba(99,102,241,0.04);
+    inset 2px 2px 6px rgba(140,140,200,0.14),
+    inset -1px -1px 3px rgba(255,255,255,0.75),
+    0 1px 3px rgba(99,102,241,0.04);
   transition: all 0.22s ease;
 }
 .ai-input:focus-within {
-  background: rgba(255,255,255,0.80);
+  background: rgba(255,255,255,0.85);
   border-color: rgba(99,102,241,0.35);
   box-shadow:
-    inset 1px 1px 4px rgba(150,150,200,0.10),
-    inset -1px -1px 2px rgba(255,255,255,0.80),
+    inset 1px 1px 4px rgba(140,140,200,0.08),
+    inset -1px -1px 2px rgba(255,255,255,0.85),
     0 0 0 3px rgba(99,102,241,0.10),
     0 2px 10px rgba(99,102,241,0.08);
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SUGGESTION CHIPS — Small glass pill buttons
+   ACCENT PILL BADGE
 ═══════════════════════════════════════════════════════════════ */
-.suggestion-chip {
-  background: rgba(255,255,255,0.70);
-  border: 1px solid rgba(200,200,230,0.45);
-  border-radius: 12px;
-  box-shadow:
-    2px 3px 10px rgba(130,130,190,0.10),
-    inset 0 1px 0 rgba(255,255,255,0.80);
-  transition: all 0.2s ease;
-  cursor: pointer;
-  text-align: left;
-}
-.suggestion-chip:hover {
-  background: rgba(255,255,255,0.92);
-  border-color: rgba(99,102,241,0.28);
-  box-shadow:
-    3px 5px 16px rgba(99,102,241,0.14),
-    inset 0 1px 0 rgba(255,255,255,0.95);
-  transform: translateY(-1px);
+.accent-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(99,102,241,0.10);
+  border: 1px solid rgba(99,102,241,0.20);
+  color: #6366F1;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.55);
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   ICON CIRCLE — Soft tinted icon container
+   ICON CIRCLE
 ═══════════════════════════════════════════════════════════════ */
 .icon-circle {
   border-radius: 14px;
@@ -430,107 +397,21 @@
   justify-content: center;
   flex-shrink: 0;
   box-shadow:
-    2px 3px 10px rgba(130,130,190,0.14),
-    inset 0 1px 0 rgba(255,255,255,0.80);
+    2px 3px 10px rgba(120,120,190,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.85);
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   ACCENT PILL — Small label badge
+   SURFACE TIER 3 — nested recessed surface
 ═══════════════════════════════════════════════════════════════ */
-.accent-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 12px;
-  border-radius: 999px;
-  background: rgba(99,102,241,0.09);
-  border: 1px solid rgba(99,102,241,0.18);
-  color: #6366F1;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.60);
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   ANIMATIONS
-═══════════════════════════════════════════════════════════════ */
-
-/* Glass shimmer sweep — apply to glass-card children if desired */
-@keyframes glint {
-  0%   { transform: translateX(-120%) skewX(-12deg); opacity: 0; }
-  30%  { opacity: 0.5; }
-  70%  { opacity: 0.5; }
-  100% { transform: translateX(220%)  skewX(-12deg); opacity: 0; }
-}
-
-.glass-glint::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 40%;
-  height: 100%;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(255,255,255,0.18) 50%,
-    transparent 100%
-  );
-  border-radius: inherit;
-  animation: glint 4s ease-in-out infinite;
-  pointer-events: none;
-}
-
-/* Bounce-in spring for cards */
-@keyframes springIn {
-  0%   { opacity: 0; transform: scale(0.94) translateY(12px); }
-  60%  { opacity: 1; transform: scale(1.015) translateY(-3px); }
-  80%  { transform: scale(0.998) translateY(1px); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-.spring-in { animation: springIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
-
-/* Skeleton shimmer */
-@keyframes shimmer {
-  0%   { background-position: -200% 0; }
-  100% { background-position:  200% 0; }
-}
-.skeleton-shimmer {
-  background: linear-gradient(90deg, #E8E8F0 25%, #F4F4FA 50%, #E8E8F0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.6s infinite;
-  border-radius: 10px;
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   RECHARTS OVERRIDES
-═══════════════════════════════════════════════════════════════ */
-.recharts-tooltip-wrapper .recharts-default-tooltip {
-  background: rgba(255,255,255,0.95) !important;
-  border: 1px solid rgba(200,200,230,0.5) !important;
-  border-radius: 14px !important;
-  box-shadow: 0 8px 32px rgba(99,102,241,0.14) !important;
-  backdrop-filter: blur(12px) !important;
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   SCROLLBAR — Subtle indigo tint
-═══════════════════════════════════════════════════════════════ */
-::-webkit-scrollbar          { width: 5px; height: 5px; }
-::-webkit-scrollbar-track    { background: transparent; }
-::-webkit-scrollbar-thumb    {
-  background: rgba(99,102,241,0.18);
-  border-radius: 999px;
-}
-::-webkit-scrollbar-thumb:hover { background: rgba(99,102,241,0.35); }
-
-/* ═══════════════════════════════════════════════════════════════
-   FOCUS RING
-═══════════════════════════════════════════════════════════════ */
-.focus-ring { outline: none; }
-.focus-ring:focus-visible {
-  outline: 2px solid #6366F1;
-  outline-offset: 2px;
-  border-radius: inherit;
+.surface-tier3 {
+  background: rgba(240,240,252,0.65);
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.85);
+  box-shadow:
+    inset 1px 1px 4px rgba(255,255,255,0.90),
+    inset -1px -1px 3px rgba(140,140,200,0.10),
+    2px 3px 8px rgba(120,120,190,0.08);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -544,15 +425,108 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SURFACE TIERS (for nested depth)
-   Tier 1 = app bg, Tier 2 = glass card, Tier 3 = inner card
+   ANIMATIONS
 ═══════════════════════════════════════════════════════════════ */
-.surface-tier3 {
-  background: rgba(245,245,255,0.65);
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.85);
+
+/* Card entrance spring */
+@keyframes springIn {
+  0%   { opacity: 0; transform: scale(0.93) translateY(14px); }
+  55%  { opacity: 1; transform: scale(1.012) translateY(-3px); }
+  80%  { transform: scale(0.998) translateY(1px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.spring-in {
+  animation: springIn 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Skeleton pulse */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #E8E8F2 25%, #F2F2FA 50%, #E8E8F2 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
+  border-radius: 10px;
+}
+
+/* Pulsing glow for AI indicator dots */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(99,102,241,0.35); }
+  50%       { box-shadow: 0 0 0 6px rgba(99,102,241,0.00); }
+}
+.pulse-glow {
+  animation: pulse-glow 2.4s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RECHARTS TOOLTIP
+═══════════════════════════════════════════════════════════════ */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: rgba(255,255,255,0.96) !important;
+  border: 1px solid rgba(200,200,230,0.55) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 28px rgba(99,102,241,0.12) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLLBAR
+═══════════════════════════════════════════════════════════════ */
+::-webkit-scrollbar          { width: 4px; height: 4px; }
+::-webkit-scrollbar-track    { background: transparent; }
+::-webkit-scrollbar-thumb    {
+  background: rgba(99,102,241,0.16);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(99,102,241,0.32); }
+
+/* ═══════════════════════════════════════════════════════════════
+   FOCUS RING
+═══════════════════════════════════════════════════════════════ */
+.focus-ring { outline: none; }
+.focus-ring:focus-visible {
+  outline: 2px solid #6366F1;
+  outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BACKWARD COMPAT aliases
+═══════════════════════════════════════════════════════════════ */
+.clay-card-sub {
+  background: rgba(240,240,252,0.70);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.88);
   box-shadow:
-    inset 1px 1px 3px rgba(255,255,255,0.90),
-    inset -1px -1px 3px rgba(150,150,200,0.10),
-    2px 3px 10px rgba(130,130,190,0.10);
+    3px 5px 14px rgba(120,120,190,0.12),
+    -1.5px -1.5px 5px rgba(255,255,255,0.90),
+    inset 1px 1px 3px rgba(255,255,255,0.95),
+    inset -1px -1px 3px rgba(120,120,190,0.08);
+}
+
+/* glass-glint — shimmer sweep overlay */
+.glass-glint { overflow: hidden; }
+.glass-glint::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -60%;
+  width: 45%;
+  height: 180%;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,255,255,0.16) 50%,
+    transparent 100%
+  );
+  transform: skewX(-18deg);
+  animation: glintSweep 5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes glintSweep {
+  0%   { left: -60%; opacity: 0; }
+  25%  { opacity: 1; }
+  50%  { left: 130%; opacity: 0; }
+  100% { left: 130%; opacity: 0; }
 }
