@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import {
   LayoutDashboard,
@@ -59,16 +60,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange, role }
 
       {/* Navigation */}
       <nav className="flex-1 space-y-1 overflow-y-auto pr-0.5">
-        {menuItems.map((item, idx) => {
+        {menuItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.id;
           return (
-            <button
+            <motion.button
               key={item.id}
               onClick={() => onTabChange(item.id === 'students' ? 'dashboard' : item.id)}
+              whileHover={{ scale: 1.02, x: 3 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               aria-current={isActive ? 'page' : undefined}
-              style={{ animationDelay: `${idx * 40}ms` }}
-              className={`spring-in w-full flex items-center gap-3 px-3.5 py-2.5 rounded-[14px] text-sm font-semibold transition-all duration-200 cursor-pointer text-left focus-ring ${
+              className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-[14px] text-sm font-semibold transition-all duration-200 cursor-pointer text-left focus-ring relative ${
                 isActive
                   ? 'nav-active'
                   : 'text-[#9B9BB8] hover:text-[#1A1A2E] hover:bg-white/60 hover:shadow-[2px_3px_10px_rgba(130,130,190,0.12)]'
@@ -80,7 +83,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange, role }
                 }`}
               />
               <span className={`truncate ${isActive ? 'text-white' : ''}`}>{item.label}</span>
-            </button>
+            </motion.button>
           );
         })}
       </nav>

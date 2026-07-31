@@ -31,6 +31,7 @@ import {
   FileText,
   Brain,
 } from 'lucide-react';
+import { LiquidPortalCanvas } from './LiquidPortalCanvas';
 import { useAuth } from '../context/AuthContext';
 
 interface StudentDashboardProps {
@@ -192,32 +193,9 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ student, onN
             </div>
           </div>
 
-          {/* 3D Glassmorphic Portal Orb — pure CSS, no external image */}
-          <div className="absolute right-6 bottom-0 w-44 h-44 pointer-events-none select-none" aria-hidden>
-            {/* Outer ring */}
-            <div className="absolute inset-0 rounded-full border-[3px] border-indigo-200/40 blur-[0.5px]" />
-            {/* Glass arch */}
-            <div className="absolute inset-4 rounded-full bg-gradient-to-br from-indigo-200/50 via-purple-200/30 to-transparent backdrop-blur-sm border border-white/60"
-              style={{ boxShadow: 'inset 2px 2px 8px rgba(255,255,255,0.6), 0 8px 32px rgba(99,102,241,0.2)' }}
-            />
-            {/* Inner glow core */}
-            <div className="absolute inset-8 rounded-full bg-gradient-to-tr from-white/80 to-indigo-100/60"
-              style={{ boxShadow: 'inset 1px 1px 4px rgba(255,255,255,0.9), 0 4px 16px rgba(139,92,246,0.25)' }}
-            />
-            {/* Specular highlight dot */}
-            <div className="absolute top-8 left-10 w-4 h-4 rounded-full bg-white/80 blur-[2px]" />
-            {/* Cloud base blobs */}
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
-              <div className="w-10 h-5 rounded-full bg-white/60 backdrop-blur-sm border border-white/50"
-                style={{ boxShadow: 'inset 1px 1px 3px rgba(255,255,255,0.8), 0 2px 8px rgba(99,102,241,0.12)' }}
-              />
-              <div className="w-14 h-6 rounded-full bg-white/70 backdrop-blur-sm border border-white/60"
-                style={{ boxShadow: 'inset 1px 1px 3px rgba(255,255,255,0.9), 0 3px 10px rgba(99,102,241,0.15)' }}
-              />
-              <div className="w-8 h-4 rounded-full bg-white/55 backdrop-blur-sm border border-white/50"
-                style={{ boxShadow: 'inset 1px 1px 2px rgba(255,255,255,0.7), 0 2px 6px rgba(99,102,241,0.10)' }}
-              />
-            </div>
+          {/* Real WebGL Three.js Liquid Glass Portal */}
+          <div className="absolute right-2 bottom-0 w-48 h-48 pointer-events-none select-none z-0 opacity-90">
+            <LiquidPortalCanvas />
           </div>
         </motion.div>
 

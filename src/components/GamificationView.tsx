@@ -1,6 +1,8 @@
 import React from 'react';
 import { Student } from '../types';
 import confetti from 'canvas-confetti';
+import * as animeModule from 'animejs';
+const anime = (animeModule as any).default || animeModule;
 import {
   Trophy,
   Flame,
@@ -20,10 +22,17 @@ export const GamificationView: React.FC<GamificationViewProps> = ({
   student,
   allStudents,
 }) => {
-  const triggerConfetti = () => {
+  const triggerConfetti = (e: React.MouseEvent<HTMLButtonElement>) => {
+    anime({
+      targets: e.currentTarget,
+      scale: [1, 1.15, 0.95, 1],
+      rotate: [0, -5, 5, 0],
+      duration: 600,
+      easing: 'easeInOutQuad',
+    });
     confetti({
-      particleCount: 100,
-      spread: 70,
+      particleCount: 120,
+      spread: 80,
       origin: { y: 0.6 },
     });
   };
