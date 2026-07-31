@@ -105,28 +105,28 @@ export const ReportGenerator: React.FC<ReportGeneratorProps> = ({
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-6 rounded-3xl shadow-sm">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white border border-slate-200/60 p-6 rounded-3xl shadow-sm">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="accent-pill">
+            <span className="text-[10px] font-black px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-600 uppercase tracking-wider">
               Automated Document Export
             </span>
           </div>
-          <h1 className="text-2xl font-black text-slate-800 dark:text-white tracking-tight">
+          <h1 className="text-2xl font-black text-[#0F122A] tracking-tight">
             Academic Reports & PDF Generator
           </h1>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+          <p className="text-xs text-[#8A99AD] font-bold mt-1">
             Generate formal PDF reports for parents, teachers, and weekly progress reviews.
           </p>
         </div>
 
         {/* Student Selector */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-2.5 rounded-2xl w-full sm:w-auto shrink-0 min-w-[200px]">
-          <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Select Student</label>
+        <div className="bg-slate-50 border border-slate-200/50 p-2.5 rounded-2xl w-full sm:w-auto shrink-0 min-w-[200px]">
+          <label className="block text-[9px] font-black uppercase tracking-wider text-[#8A99AD] mb-1">Select Student</label>
           <select
             value={student.studentId}
             onChange={(e) => onSelectStudent(e.target.value)}
-            className="bg-white dark:bg-slate-900 text-slate-800 dark:text-white text-xs font-bold rounded-xl px-3 py-1.5 border border-slate-200 dark:border-slate-700 outline-none w-full"
+            className="bg-white text-[#0F122A] text-xs font-bold rounded-xl px-3 py-1.5 border border-slate-200 outline-none w-full cursor-pointer"
           >
             {allStudents.map((st) => (
               <option key={st.studentId} value={st.studentId}>
@@ -138,94 +138,94 @@ export const ReportGenerator: React.FC<ReportGeneratorProps> = ({
       </div>
 
       {/* Report Controls & Type Tabs */}
-      <div className="clay-card p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div className="flex items-center gap-2 bg-[#F1F5F9] dark:bg-slate-800 p-1.5 rounded-2xl border border-[#E2E8F0] dark:border-slate-700">
+      <div className="clay-card p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div className="flex flex-wrap items-center gap-2 bg-slate-50 p-1.5 rounded-2xl border border-slate-200/50">
           <button
             onClick={() => setReportType('parent')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all focus-ring cursor-pointer ${
+            className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all focus-ring cursor-pointer ${
               reportType === 'parent'
-                ? 'bg-[#145EA0] text-white shadow-sm'
-                : 'text-[#6D96B3] dark:text-slate-400'
+                ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-600/10'
+                : 'text-[#8A99AD] hover:text-[#0F122A]'
             }`}
           >
-            Parent Progress Report
+            Parent Report
           </button>
           <button
             onClick={() => setReportType('weekly')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all focus-ring cursor-pointer ${
+            className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all focus-ring cursor-pointer ${
               reportType === 'weekly'
-                ? 'bg-[#145EA0] text-white shadow-sm'
-                : 'text-[#6D96B3] dark:text-slate-400'
+                ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-600/10'
+                : 'text-[#8A99AD] hover:text-[#0F122A]'
             }`}
           >
-            Weekly Student Summary
+            Weekly Summary
           </button>
           <button
             onClick={() => setReportType('teacher')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all focus-ring cursor-pointer ${
+            className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all focus-ring cursor-pointer ${
               reportType === 'teacher'
-                ? 'bg-[#145EA0] text-white shadow-sm'
-                : 'text-[#6D96B3] dark:text-slate-400'
+                ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-600/10'
+                : 'text-[#8A99AD] hover:text-[#0F122A]'
             }`}
           >
-            Teacher Executive Report
+            Teacher Executive
           </button>
         </div>
 
         <button
           onClick={exportPDF}
-          className="flex items-center justify-center gap-2 bg-[#145EA0] hover:bg-[#0D2F5B] text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md shadow-[#145EA0]/30 transition-all shrink-0 focus-ring cursor-pointer"
+          className="flex items-center justify-center gap-2 clay-btn font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition-all shrink-0 focus-ring cursor-pointer"
         >
           <Download className="w-4 h-4" /> Download PDF Report
         </button>
       </div>
 
       {/* Styled Document Sheet Preview */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 sm:p-12 rounded-3xl shadow-xl max-w-4xl mx-auto space-y-8 font-sans">
+      <div className="bg-white border border-slate-200 p-8 sm:p-12 rounded-3xl shadow-xl max-w-4xl mx-auto space-y-8 font-sans">
         {/* Document Header */}
-        <div className="flex items-start justify-between border-b border-slate-200 dark:border-slate-800 pb-6">
+        <div className="flex items-start justify-between border-b border-slate-100 pb-6">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center">
+            <div className="w-12 h-12 bg-indigo-600 text-white rounded-2xl flex items-center justify-center shadow-md shadow-indigo-600/10">
               <GraduationCap className="w-7 h-7" />
             </div>
             <div>
-              <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">
+              <h2 className="text-xl font-black text-[#0F122A] tracking-tight leading-none mb-1.5">
                 EduSense Learning Analytics
               </h2>
-              <p className="text-xs text-slate-500">St. Jude Academy of STEM • Academic Term 2</p>
+              <p className="text-xs text-[#8A99AD] font-bold">St. Jude Academy of STEM • Academic Term 2</p>
             </div>
           </div>
 
-          <div className="text-right text-xs text-slate-500">
-            <span className="font-bold text-slate-900 dark:text-white block">
+          <div className="text-right text-xs text-[#8A99AD]">
+            <span className="font-black text-[#0F122A] block uppercase tracking-wider">
               {reportType === 'parent'
                 ? 'Parent Progress Report'
                 : reportType === 'weekly'
                 ? 'Weekly Progress Review'
                 : 'Teacher Intervention Report'}
             </span>
-            <span>Date: {new Date().toLocaleDateString()}</span>
+            <span className="font-bold">Date: {new Date().toLocaleDateString()}</span>
           </div>
         </div>
 
         {/* Student Profile Block */}
-        <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+        <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs shadow-[inset_1px_1px_2px_rgba(0,0,0,0.01)]">
           <div>
-            <span className="text-slate-400 font-medium block">Student Name</span>
-            <span className="font-bold text-slate-900 dark:text-white text-sm">{student.name}</span>
+            <span className="text-[#8A99AD] font-black uppercase tracking-wider block mb-1">Student Name</span>
+            <span className="font-black text-[#0F122A] text-sm leading-none">{student.name}</span>
           </div>
           <div>
-            <span className="text-slate-400 font-medium block">Student ID</span>
-            <span className="font-bold text-slate-900 dark:text-white text-sm">{student.studentId}</span>
+            <span className="text-[#8A99AD] font-black uppercase tracking-wider block mb-1">Student ID</span>
+            <span className="font-black text-[#0F122A] text-sm leading-none">{student.studentId}</span>
           </div>
           <div>
-            <span className="text-slate-400 font-medium block">Class & Stream</span>
-            <span className="font-bold text-slate-900 dark:text-white text-sm">{student.class}</span>
+            <span className="text-[#8A99AD] font-black uppercase tracking-wider block mb-1">Class & Stream</span>
+            <span className="font-black text-[#0F122A] text-sm leading-none">{student.class}</span>
           </div>
           <div>
-            <span className="text-slate-400 font-medium block">Risk Status</span>
+            <span className="text-[#8A99AD] font-black uppercase tracking-wider block mb-1">Risk Status</span>
             <span
-              className={`font-bold text-sm ${
+              className={`font-black text-sm leading-none ${
                 student.atRisk ? 'text-red-500' : 'text-emerald-500'
               }`}
             >
@@ -236,31 +236,31 @@ export const ReportGenerator: React.FC<ReportGeneratorProps> = ({
 
         {/* Performance Metrics Table */}
         <div className="space-y-3">
-          <h3 className="font-bold text-slate-900 dark:text-white text-sm uppercase tracking-wider text-slate-400">
+          <h3 className="font-black text-xs text-[#8A99AD] uppercase tracking-wider">
             Current Factor Breakdown
           </h3>
           <div className="grid grid-cols-3 gap-4 text-center">
-            <div className="p-4 bg-blue-50/50 dark:bg-blue-950/30 rounded-2xl border border-blue-100 dark:border-blue-900">
-              <span className="text-xs text-slate-500 block">Attendance Rate</span>
-              <span className="text-xl font-black text-blue-600 dark:text-blue-400">{student.attendance}%</span>
+            <div className="p-4 bg-indigo-50 border border-indigo-100 rounded-2xl shadow-sm">
+              <span className="text-[10px] font-black uppercase tracking-wider text-[#8A99AD] block mb-1">Attendance Rate</span>
+              <span className="text-xl font-black text-indigo-600">{student.attendance}%</span>
             </div>
-            <div className="p-4 bg-purple-50/50 dark:bg-purple-950/30 rounded-2xl border border-purple-100 dark:border-purple-900">
-              <span className="text-xs text-slate-500 block">Weekly Study Hours</span>
-              <span className="text-xl font-black text-purple-600 dark:text-purple-400">{student.studyHours} hrs/wk</span>
+            <div className="p-4 bg-purple-50 border border-purple-100 rounded-2xl shadow-sm">
+              <span className="text-[10px] font-black uppercase tracking-wider text-[#8A99AD] block mb-1">Weekly Study Hours</span>
+              <span className="text-xl font-black text-purple-650">{student.studyHours} hrs/wk</span>
             </div>
-            <div className="p-4 bg-indigo-50/50 dark:bg-indigo-950/30 rounded-2xl border border-indigo-100 dark:border-indigo-900">
-              <span className="text-xs text-slate-500 block">Sleep Quality</span>
-              <span className="text-xl font-black text-indigo-600 dark:text-indigo-400">{student.sleepHours} hrs/night</span>
+            <div className="p-4 bg-cyan-50 border border-cyan-100 rounded-2xl shadow-sm">
+              <span className="text-[10px] font-black uppercase tracking-wider text-[#8A99AD] block mb-1">Sleep Quality</span>
+              <span className="text-xl font-black text-cyan-600">{student.sleepHours} hrs/night</span>
             </div>
           </div>
         </div>
 
         {/* AI Recommendations */}
-        <div className="p-6 bg-gradient-to-r from-blue-900 to-indigo-900 text-white rounded-2xl space-y-2">
-          <div className="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-4 h-4" /> AI Predictive Synthesis
+        <div className="p-6 bg-gradient-to-br from-indigo-600 via-purple-650 to-purple-650 text-white rounded-2xl space-y-2 shadow-lg shadow-indigo-650/15">
+          <div className="flex items-center gap-2 text-yellow-300 text-xs font-black uppercase tracking-wider">
+            <Sparkles className="w-4 h-4 text-white" /> AI Predictive Synthesis
           </div>
-          <p className="text-xs sm:text-sm text-blue-100 leading-relaxed font-medium">
+          <p className="text-xs sm:text-sm text-white/95 leading-relaxed font-bold">
             {prediction.aiRecommendation}
           </p>
         </div>

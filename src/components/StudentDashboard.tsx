@@ -90,7 +90,7 @@ const Sparkline: React.FC<{ data: { v: number }[]; color: string }> = ({
   data,
   color,
 }) => (
-  <LineChart width={90} height={36} data={data}>
+  <LineChart width={85} height={32} data={data} margin={{ top: 2, bottom: 2, left: 2, right: 2 }}>
     <Line
       type="monotone"
       dataKey="v"
@@ -119,33 +119,37 @@ const StatCard: React.FC<{
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay, type: 'spring', stiffness: 260, damping: 22 }}
-    className="clay-card p-5 flex flex-col gap-3"
+    className="clay-card p-5.5 flex flex-col justify-between min-h-[145px]"
   >
     <div className="flex items-start justify-between">
-      <div>
-        <p className="text-xs font-bold text-[var(--text-muted)] tracking-widest uppercase mb-1">
-          {label}
-        </p>
-        <p className="text-3xl font-extrabold text-[var(--text-primary)] leading-none">
-          {value}
-        </p>
-        <p className="text-[11px] text-[var(--text-muted)] font-medium mt-1">{sub}</p>
-      </div>
-      <div
-        className={`w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 ${iconBg}`}
-      >
-        {icon}
+      <div className="flex items-center gap-3">
+        <div
+          className={`w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 shadow-sm ${iconBg}`}
+        >
+          {icon}
+        </div>
+        <div>
+          <p className="text-[10px] font-black text-[#8A99AD] tracking-widest uppercase mb-0.5">
+            {label}
+          </p>
+          <p className="text-2xl font-black text-[#0F122A] leading-none">
+            {value}
+          </p>
+          <p className="text-[10px] text-[#8A99AD] font-bold mt-1.5">{sub}</p>
+        </div>
       </div>
     </div>
 
-    <div className="flex items-end justify-between">
+    <div className="flex items-center justify-between mt-4">
       <span
-        className={`text-xs font-bold flex items-center gap-1 ${
-          trendUp ? 'text-emerald-500' : 'text-red-400'
+        className={`text-[10px] font-black flex items-center gap-0.5 px-2 py-0.5 rounded-lg border ${
+          trendUp 
+            ? 'bg-emerald-50/70 border-emerald-250 text-emerald-600' 
+            : 'bg-red-50/70 border-red-250 text-red-500'
         }`}
       >
         <ArrowUpRight
-          className={`w-3.5 h-3.5 ${!trendUp ? 'rotate-180' : ''}`}
+          className={`w-3 h-3 ${!trendUp ? 'rotate-180' : ''}`}
         />
         {trend}
       </span>
@@ -158,11 +162,12 @@ const StatCard: React.FC<{
 const CustomTooltip: React.FC<any> = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null;
   return (
-    <div className="clay-card px-3 py-2 text-xs font-semibold">
-      <p className="text-[var(--text-muted)] mb-1">{label}</p>
+    <div className="clay-card px-3.5 py-2.5 text-xs font-semibold bg-white/90 backdrop-blur-md border border-white">
+      <p className="text-[#8A99AD] mb-1 font-bold">{label}</p>
       {payload.map((p: any) => (
-        <p key={p.name} style={{ color: p.color }}>
-          {p.name}: <span className="font-extrabold">{Math.round(p.value)}%</span>
+        <p key={p.name} style={{ color: p.color }} className="flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: p.color }} />
+          {p.name}: <span className="font-extrabold text-[#0F122A]">{Math.round(p.value)}%</span>
         </p>
       ))}
     </div>
@@ -235,30 +240,32 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
         {/* Welcome Card */}
         <motion.div
           variants={itemVariants}
-          className="lg:col-span-3 clay-card p-7 flex items-center justify-between gap-6 overflow-hidden relative min-h-[190px]"
+          className="lg:col-span-3 clay-card p-8 flex items-center justify-between gap-6 overflow-hidden relative min-h-[190px]"
         >
           {/* Gradient glow blob */}
           <div className="absolute right-0 top-0 w-72 h-72 bg-gradient-to-bl from-indigo-400/20 via-purple-400/10 to-transparent rounded-full -translate-y-1/3 translate-x-1/3 pointer-events-none" />
 
-          <div className="relative z-10">
-            <p className="text-lg font-bold text-indigo-500 dark:text-indigo-400 mb-1">
-              {getGreeting()}
-            </p>
-            <h1 className="text-4xl font-extrabold text-[var(--text-primary)] mb-3 leading-tight">
-              {student.name.split(' ')[0]} 👋
-            </h1>
-            <p className="text-sm text-[var(--text-secondary)] font-medium mb-5 max-w-xs">
-              Here's what's happening with your learning journey today.
-            </p>
+          <div className="relative z-10 flex flex-col justify-between h-full">
+            <div>
+              <p className="text-xs font-extrabold text-indigo-500 uppercase tracking-widest mb-1.5">
+                {getGreeting()}
+              </p>
+              <h1 className="text-4xl font-black text-[#0F122A] mb-3 leading-none">
+                {student.name.split(' ')[0]} 👋
+              </h1>
+              <p className="text-xs text-[#4A5568] font-bold mb-6 max-w-xs">
+                Here's what's happening with your learning journey today.
+              </p>
+            </div>
 
             {/* Date + tasks pills */}
             <div className="flex flex-wrap gap-2">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black/5 dark:bg-white/5 border border-[var(--border-card)] text-xs font-semibold text-[var(--text-secondary)]">
-                <CalendarDays className="w-3.5 h-3.5" />
+              <div className="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white border border-white/60 text-[10px] font-extrabold text-[#4A5568] shadow-sm">
+                <CalendarDays className="w-3.5 h-3.5 text-indigo-500" />
                 {formattedDate}
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black/5 dark:bg-white/5 border border-[var(--border-card)] text-xs font-semibold text-[var(--text-secondary)]">
-                <Target className="w-3.5 h-3.5" />
+              <div className="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white border border-white/60 text-[10px] font-extrabold text-[#4A5568] shadow-sm">
+                <Target className="w-3.5 h-3.5 text-indigo-500" />
                 {student.streak} day streak 🔥
               </div>
             </div>
@@ -269,7 +276,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
             <img
               src="/src/assets/clay_arch.png"
               alt="3D Arch illustration"
-              className="w-40 h-40 object-contain drop-shadow-2xl"
+              className="w-40 h-40 object-contain drop-shadow-xl"
               draggable={false}
             />
           </div>
@@ -283,31 +290,31 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
           <div>
             <div className="flex items-center gap-2 mb-1">
               <Sparkles className="w-4 h-4 text-indigo-500" />
-              <h3 className="font-extrabold text-sm text-[var(--text-primary)] tracking-wide">
+              <h3 className="font-black text-xs text-[#0F122A] tracking-wider uppercase">
                 AI Copilot
               </h3>
             </div>
-            <p className="text-xs text-[var(--text-muted)] font-medium">
+            <p className="text-[10px] text-[#8A99AD] font-bold">
               Ask me anything about your studies
             </p>
           </div>
 
           {/* Input */}
-          <div className="flex items-center gap-2 clay-card-sub px-4 py-2.5">
+          <div className="flex items-center gap-2 bg-slate-50 border border-slate-200/50 rounded-2xl px-4 py-2.5 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.03)]">
             <input
               type="text"
               value={copilotInput}
               onChange={(e) => setCopilotInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleCopilotSend()}
               placeholder="Type your question here..."
-              className="flex-1 bg-transparent text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none font-medium"
+              className="flex-1 bg-transparent text-xs text-[#0F122A] placeholder-[#8A99AD] focus:outline-none font-bold"
             />
             <button
               onClick={() => handleCopilotSend()}
               className="clay-btn p-2 rounded-xl shrink-0 cursor-pointer"
               aria-label="Send to AI Copilot"
             >
-              <Send className="w-3.5 h-3.5" />
+              <Send className="w-3 h-3" />
             </button>
           </div>
 
@@ -317,7 +324,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
               <button
                 key={s.label}
                 onClick={() => handleCopilotSend(s.label)}
-                className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-[11px] font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] clay-card-sub hover:border-indigo-300/50 dark:hover:border-indigo-700/50 transition-all text-left cursor-pointer focus-ring"
+                className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-[10px] font-bold text-[#4A5568] hover:text-[#0F122A] clay-card-sub hover:border-indigo-300 transition-all text-left cursor-pointer focus-ring"
               >
                 <span>{s.icon}</span>
                 <span className="leading-tight">{s.label}</span>
@@ -333,9 +340,9 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
           label="Attendance"
           value={`${student.attendance}%`}
           sub="This Month"
-          icon={<CalendarDays className="w-5 h-5 text-blue-600 dark:text-blue-400" />}
-          iconBg="bg-blue-100 dark:bg-blue-900/40"
-          trend={`${student.attendance >= 75 ? '+6%' : '-4%'}`}
+          icon={<CalendarDays className="w-4.5 h-4.5 text-indigo-500" />}
+          iconBg="bg-indigo-50"
+          trend={`${student.attendance >= 75 ? '↑ 6%' : '↓ 4%'}`}
           trendUp={student.attendance >= 75}
           sparkData={genSparkline(student.attendance, seed)}
           sparkColor="#6366F1"
@@ -345,9 +352,9 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
           label="Average Score"
           value={`${avgScore}%`}
           sub="All Subjects"
-          icon={<Star className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />}
-          iconBg="bg-indigo-100 dark:bg-indigo-900/40"
-          trend="+4.3%"
+          icon={<Star className="w-4.5 h-4.5 text-purple-500" />}
+          iconBg="bg-purple-50"
+          trend="↑ 4.3%"
           trendUp={true}
           sparkData={genSparkline(Number(avgScore), seed + 1)}
           sparkColor="#8B5CF6"
@@ -357,9 +364,9 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
           label="Study Hours"
           value={`${student.studyHours}h`}
           sub="This Week"
-          icon={<Clock className="w-5 h-5 text-violet-600 dark:text-violet-400" />}
-          iconBg="bg-violet-100 dark:bg-violet-900/40"
-          trend="+12%"
+          icon={<Clock className="w-4.5 h-4.5 text-cyan-500" />}
+          iconBg="bg-cyan-50"
+          trend="↑ 12%"
           trendUp={true}
           sparkData={genSparkline(student.studyHours * 4, seed + 2)}
           sparkColor="#22D3EE"
@@ -369,9 +376,9 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
           label="Focus Score"
           value={`${focusScore}/100`}
           sub="Keep it up!"
-          icon={<Target className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />}
-          iconBg="bg-emerald-100 dark:bg-emerald-900/40"
-          trend="+8%"
+          icon={<Target className="w-4.5 h-4.5 text-emerald-500" />}
+          iconBg="bg-emerald-50"
+          trend="↑ 8%"
           trendUp={focusScore >= 70}
           sparkData={genSparkline(focusScore, seed + 3)}
           sparkColor="#10B981"
@@ -389,78 +396,67 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
               <TrendingUp className="w-4 h-4 text-indigo-500" />
-              <h3 className="font-extrabold text-sm text-[var(--text-primary)]">
+              <h3 className="font-black text-xs text-[#0F122A] tracking-wider uppercase">
                 Performance Overview
               </h3>
             </div>
-            <span className="text-xs font-bold text-[var(--text-muted)] border border-[var(--border-card)] px-3 py-1 rounded-xl">
+            <span className="text-[10px] font-bold text-[#8A99AD] border border-slate-200 bg-slate-50 px-3 py-1 rounded-full">
               This Month ▾
             </span>
           </div>
 
           <div className="h-52 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={performanceData}>
-                <defs>
-                  <linearGradient id="gradMaths" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#6366F1" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#6366F1" stopOpacity={0} />
-                  </linearGradient>
-                  <linearGradient id="gradSci" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.25} />
-                    <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0} />
-                  </linearGradient>
-                  <linearGradient id="gradEng" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#EC4899" stopOpacity={0.2} />
-                    <stop offset="95%" stopColor="#EC4899" stopOpacity={0} />
-                  </linearGradient>
-                </defs>
+              <LineChart data={performanceData}>
                 <CartesianGrid
                   strokeDasharray="3 3"
-                  stroke="rgba(148,163,184,0.15)"
+                  stroke="rgba(148,163,184,0.12)"
                   vertical={false}
                 />
                 <XAxis
                   dataKey="month"
-                  tick={{ fontSize: 11, fill: 'var(--text-muted)', fontWeight: 600 }}
+                  tick={{ fontSize: 10, fill: '#8A99AD', fontWeight: 705 }}
                   tickLine={false}
                   axisLine={false}
                 />
                 <YAxis
                   domain={[0, 100]}
-                  tick={{ fontSize: 11, fill: 'var(--text-muted)', fontWeight: 600 }}
+                  tick={{ fontSize: 10, fill: '#8A99AD', fontWeight: 705 }}
                   tickLine={false}
                   axisLine={false}
-                  width={30}
+                  width={25}
                 />
                 <Tooltip content={<CustomTooltip />} />
-                <Area
+                <Line
                   type="monotone"
                   dataKey="Maths"
                   stroke="#6366F1"
-                  strokeWidth={2.5}
-                  fill="url(#gradMaths)"
+                  strokeWidth={3}
+                  dot={{ r: 3.5, strokeWidth: 1.5, fill: '#FFFFFF' }}
+                  activeDot={{ r: 5 }}
                 />
-                <Area
+                <Line
                   type="monotone"
                   dataKey="Science"
                   stroke="#8B5CF6"
-                  strokeWidth={2.5}
-                  fill="url(#gradSci)"
+                  strokeWidth={3}
+                  dot={{ r: 3.5, strokeWidth: 1.5, fill: '#FFFFFF' }}
+                  activeDot={{ r: 5 }}
                 />
-                <Area
+                <Line
                   type="monotone"
                   dataKey="English"
                   stroke="#EC4899"
-                  strokeWidth={2.5}
-                  fill="url(#gradEng)"
+                  strokeWidth={3}
+                  dot={{ r: 3.5, strokeWidth: 1.5, fill: '#FFFFFF' }}
+                  activeDot={{ r: 5 }}
                 />
-              </AreaChart>
+              </LineChart>
             </ResponsiveContainer>
           </div>
 
           {/* Legend */}
-          <div className="flex items-center gap-5 mt-3 pl-2">
+          <div className="flex items-center gap-5 mt-4 pl-1">
             {[
               { label: 'Maths', color: '#6366F1' },
               { label: 'Science', color: '#8B5CF6' },
@@ -468,10 +464,10 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
             ].map((l) => (
               <div key={l.label} className="flex items-center gap-1.5">
                 <span
-                  className="w-3.5 h-0.5 rounded-full"
+                  className="w-2.5 h-2.5 rounded-full"
                   style={{ backgroundColor: l.color }}
                 />
-                <span className="text-[11px] font-bold text-[var(--text-muted)]">
+                <span className="text-[10px] font-bold text-[#8A99AD] uppercase tracking-wider">
                   {l.label}
                 </span>
               </div>
@@ -486,7 +482,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
         >
           <div className="flex items-center gap-2 mb-4">
             <TrendingUp className="w-4 h-4 text-purple-500" />
-            <h3 className="font-extrabold text-sm text-[var(--text-primary)]">
+            <h3 className="font-black text-xs text-[#0F122A] tracking-wider uppercase">
               Subject Strength
             </h3>
           </div>
@@ -496,17 +492,16 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
               <RadarChart data={radarData}>
                 <defs>
                   <linearGradient id="radarGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#8B5CF6" stopOpacity={0.6} />
-                    <stop offset="100%" stopColor="#6366F1" stopOpacity={0.2} />
+                    <stop offset="0%" stopColor="#8B5CF6" stopOpacity={0.4} />
+                    <stop offset="100%" stopColor="#6366F1" stopOpacity={0.1} />
                   </linearGradient>
                 </defs>
                 <PolarGrid
-                  stroke="rgba(148,163,184,0.2)"
-                  strokeDasharray="0"
+                  stroke="rgba(148,163,184,0.15)"
                 />
                 <PolarAngleAxis
                   dataKey="subject"
-                  tick={{ fontSize: 11, fill: 'var(--text-muted)', fontWeight: 600 }}
+                  tick={{ fontSize: 10, fill: '#8A99AD', fontWeight: 700 }}
                 />
                 <Radar
                   name="Score"
@@ -524,33 +519,33 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
       {/* ── ROW 4: AI Prediction + Quick Nav ── */}
       <motion.div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* Prediction banner */}
-        <div className="lg:col-span-2 clay-card p-6 relative overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 border-0 text-white">
-          <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 opacity-95" />
+        <div className="lg:col-span-2 clay-card p-6 relative overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-650 to-violet-600 border-0 text-white shadow-lg shadow-indigo-650/15">
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-650 to-violet-600 opacity-95" />
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/3 blur-2xl pointer-events-none" />
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-3">
               <Sparkles className="w-4 h-4 text-white/80" />
-              <span className="text-[11px] font-extrabold uppercase tracking-widest text-white/70">
+              <span className="text-[10px] font-extrabold uppercase tracking-widest text-white/70">
                 Gemini AI Prediction
               </span>
             </div>
-            <h3 className="text-lg font-extrabold leading-snug mb-2">
+            <h3 className="text-lg font-black leading-snug mb-2">
               Predicted final score:{' '}
               <span className="text-yellow-300">{prediction.predictedExamScore}%</span>
             </h3>
-            <p className="text-xs text-white/75 leading-relaxed mb-4 max-w-lg">
+            <p className="text-xs text-white/85 leading-relaxed mb-4 max-w-lg font-medium">
               {prediction.aiRecommendation}
             </p>
             <div className="flex gap-3 flex-wrap">
               <button
                 onClick={() => onNavigateTab('planner')}
-                className="flex items-center gap-2 bg-white/15 hover:bg-white/25 border border-white/20 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer"
+                className="flex items-center gap-2 bg-white/15 hover:bg-white/25 border border-white/20 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer shadow-sm"
               >
                 Generate Study Plan <ArrowUpRight className="w-3.5 h-3.5" />
               </button>
               <button
                 onClick={() => onNavigateTab('whatif')}
-                className="flex items-center gap-2 bg-white/15 hover:bg-white/25 border border-white/20 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer"
+                className="flex items-center gap-2 bg-white/15 hover:bg-white/25 border border-white/20 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer shadow-sm"
               >
                 Simulate What-If <ArrowUpRight className="w-3.5 h-3.5" />
               </button>
@@ -560,19 +555,19 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
 
         {/* Quick stats summary */}
         <div className="clay-card p-6 flex flex-col justify-between gap-4">
-          <h3 className="font-extrabold text-sm text-[var(--text-primary)]">Pass Probability</h3>
-          <div className="text-5xl font-extrabold text-[var(--text-primary)]">
+          <h3 className="font-black text-xs text-[#0F122A] uppercase tracking-wider">Pass Probability</h3>
+          <div className="text-5xl font-black text-[#0F122A]">
             {prediction.passProbability}
-            <span className="text-2xl text-[var(--text-muted)]">%</span>
+            <span className="text-2xl text-[#8A99AD] font-bold">%</span>
           </div>
           <div className="space-y-2">
-            <div className="w-full h-3 bg-[var(--border-card)] rounded-full overflow-hidden">
+            <div className="w-full h-3 bg-slate-100 rounded-full overflow-hidden border border-slate-200/50">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-700"
                 style={{ width: `${prediction.passProbability}%` }}
               />
             </div>
-            <div className="flex justify-between text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider">
+            <div className="flex justify-between text-[9px] font-black text-[#8A99AD] uppercase tracking-wider">
               <span>At Risk</span>
               <span>On Track</span>
             </div>
@@ -581,13 +576,13 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
             {student.badges.slice(0, 3).map((b) => (
               <span
                 key={b.id}
-                className="text-[10px] font-bold px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-800"
+                className="text-[9px] font-black px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-600 border border-indigo-100"
               >
                 {b.icon} {b.title}
               </span>
             ))}
             {student.badges.length === 0 && (
-              <span className="text-xs text-[var(--text-muted)] font-medium">
+              <span className="text-xs text-[#8A99AD] font-bold">
                 Level {student.level} · {student.xp} XP
               </span>
             )}

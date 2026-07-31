@@ -94,15 +94,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Brand Header */}
       <div className="mb-8">
         <div className="flex items-center gap-1.5 px-3 py-1.5">
-          <span className="font-display font-extrabold text-2xl tracking-[0.25em] text-slate-800 dark:text-white">
+          <span className="font-display font-black text-2xl tracking-[0.25em] text-[#0F122A]">
             LUCIFER
           </span>
-          <span className="w-2.5 h-2.5 bg-indigo-600 rounded-full mt-2" />
+          <span className="w-2.5 h-2.5 bg-indigo-600 rounded-full mt-2.5" />
         </div>
       </div>
 
       {/* Menu Navigation */}
-      <div className="flex-1 space-y-1.5 overflow-y-auto pr-1">
+      <div className="flex-1 space-y-2 overflow-y-auto pr-1">
         {menuItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.id;
@@ -117,22 +117,22 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 }
               }}
               aria-current={isActive ? 'page' : undefined}
-              className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition-all duration-200 cursor-pointer ${
+              className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all duration-250 cursor-pointer ${
                 isActive
-                  ? 'bg-slate-100 dark:bg-[#1F243D] text-indigo-600 dark:text-white shadow-[inset_1px_1px_3px_rgba(255,255,255,0.05)] border border-slate-200 dark:border-[#2A314D]'
-                  : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800/40'
+                  ? 'bg-white text-indigo-600 shadow-[inset_1px_1px_3px_rgba(255,255,255,1),_4px_4px_12px_rgba(99,102,241,0.12)] border border-slate-100'
+                  : 'text-[#8A99AD] hover:text-[#0F122A] hover:bg-slate-100/50'
               }`}
             >
-              <div className="flex items-center gap-3.5">
-                <div className={`p-1.5 rounded-lg transition-colors ${
-                  isActive ? 'bg-indigo-600 text-white' : 'bg-transparent text-slate-400'
+              <div className="flex items-center gap-3">
+                <div className={`p-2 rounded-xl transition-all duration-250 ${
+                  isActive ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20' : 'bg-transparent text-[#8A99AD]'
                 }`}>
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-3.5 h-3.5" />
                 </div>
                 <span className="tracking-wide">{item.label}</span>
               </div>
               {isActive && (
-                <div className="w-1.5 h-1.5 bg-indigo-600 dark:bg-purple-500 rounded-full" />
+                <div className="w-1.5 h-1.5 bg-indigo-600 rounded-full mr-1.5" />
               )}
             </button>
           );
@@ -140,15 +140,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
 
       {/* Profile & Logout Footer */}
-      <div className="pt-6 mt-4 border-t border-slate-200/50 dark:border-slate-800/50 space-y-4">
+      <div className="pt-5 mt-4 border-t border-slate-200/50 space-y-4">
         {/* Profile Info Widget */}
         <button 
           onClick={() => setIsAuthModalOpen(true)}
-          className="w-full flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-[#1F243D]/50 hover:bg-slate-100 dark:hover:bg-[#1F243D] transition-all border border-transparent hover:border-slate-200 dark:hover:border-[#2A314D] cursor-pointer text-left focus-ring"
+          className="w-full flex items-center justify-between p-2.5 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-slate-100/60 transition-all cursor-pointer text-left focus-ring"
         >
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
             {/* Gradient Avatar bubble */}
-            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 p-[2px] shadow-md shadow-purple-500/10">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 p-[2.5px] shadow-sm">
               <img
                 src={role === 'student' && activeStudent?.avatar ? activeStudent.avatar : (user?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150")}
                 alt={displayName}
@@ -156,23 +156,23 @@ export const Sidebar: React.FC<SidebarProps> = ({
               />
             </div>
             <div>
-              <p className="text-xs font-extrabold text-slate-800 dark:text-slate-200 tracking-wide line-clamp-1">
+              <p className="text-xs font-black text-[#0F122A] tracking-wide line-clamp-1">
                 {displayName}
               </p>
-              <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">
+              <p className="text-[10px] text-[#8A99AD] font-bold uppercase tracking-wider">
                 {displayRole}
               </p>
             </div>
           </div>
-          <ChevronRight className="w-4 h-4 text-slate-400" />
+          <ChevronRight className="w-3.5 h-3.5 text-[#8A99AD]" />
         </button>
 
         {/* Logout Trigger */}
         <button
           onClick={logout}
-          className="w-full flex items-center gap-3.5 px-4 py-2.5 rounded-2xl text-sm font-semibold text-slate-400 hover:text-red-500 dark:hover:text-red-400 transition-colors cursor-pointer text-left focus-ring"
+          className="w-full flex items-center gap-3.5 px-3 py-2 rounded-2xl text-xs font-bold text-[#8A99AD] hover:text-red-500 transition-colors cursor-pointer text-left focus-ring"
         >
-          <LogOut className="w-4 h-4" />
+          <LogOut className="w-3.5 h-3.5" />
           <span className="tracking-wide">Logout</span>
         </button>
       </div>

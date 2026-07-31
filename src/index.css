@@ -26,39 +26,35 @@
 
 @layer base {
   :root {
-    --bg-app: #F8FAFC;
-    --border-card: #E5E7EB;
+    --bg-app: #EEF2F6; /* Soft blue-grey background */
+    --border-card: rgba(255, 255, 255, 0.6);
     
     /* Claymorphism Light Variables */
     --clay-bg: #FFFFFF;
-    --clay-shadow: 6px 6px 16px #D1D5DB, -6px -6px 16px #FFFFFF;
-    --clay-inset: inset 2px 2px 5px rgba(255, 255, 255, 1), inset -2px -2px 5px rgba(0, 0, 0, 0.05);
+    --clay-shadow: 8px 8px 20px rgba(165, 180, 203, 0.35), -8px -8px 20px #FFFFFF;
+    --clay-inset: inset 2.5px 2.5px 5px rgba(255, 255, 255, 1), inset -3px -3px 6px rgba(165, 180, 203, 0.08);
     
     /* Glassmorphism Light */
-    --glass-bg: rgba(255, 255, 255, 0.4);
-    --glass-border: rgba(255, 255, 255, 0.25);
+    --glass-bg: rgba(255, 255, 255, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.4);
     
-    --text-primary: #1E293B;
-    --text-secondary: #475569;
-    --text-muted: #94A3B8;
+    --text-primary: #0F122A; /* Dark contrast text from Design System */
+    --text-secondary: #4A5568;
+    --text-muted: #8A99AD;
   }
 
   .dark {
-    --bg-app: #0F1117;
-    --border-card: #1F243D;
-    
-    /* Claymorphism Dark Variables */
-    --clay-bg: #161A24;
-    --clay-shadow: 6px 6px 16px #0A0D14, -6px -6px 16px #1F2430;
-    --clay-inset: inset 2px 2px 4px rgba(255, 255, 255, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.4);
-    
-    /* Glassmorphism Dark */
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    
-    --text-primary: #E5E7EB;
-    --text-secondary: #94A3B8;
-    --text-muted: #64748B;
+    /* Set dark theme variables identical to light to force light-mode rendering */
+    --bg-app: #EEF2F6;
+    --border-card: rgba(255, 255, 255, 0.6);
+    --clay-bg: #FFFFFF;
+    --clay-shadow: 8px 8px 20px rgba(165, 180, 203, 0.35), -8px -8px 20px #FFFFFF;
+    --clay-inset: inset 2.5px 2.5px 5px rgba(255, 255, 255, 1), inset -3px -3px 6px rgba(165, 180, 203, 0.08);
+    --glass-bg: rgba(255, 255, 255, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --text-primary: #0F122A;
+    --text-secondary: #4A5568;
+    --text-muted: #8A99AD;
   }
 
   body {
@@ -87,11 +83,11 @@
 
 .clay-card:hover {
   transform: translateY(-2px);
-  box-shadow: var(--clay-shadow), var(--clay-inset), 0 10px 20px rgba(0, 0, 0, 0.04);
+  box-shadow: 10px 10px 24px rgba(165, 180, 203, 0.45), -10px -10px 24px #FFFFFF, var(--clay-inset);
 }
 
 .dark .clay-card:hover {
-  box-shadow: var(--clay-shadow), var(--clay-inset), 0 10px 25px rgba(0, 0, 0, 0.6);
+  box-shadow: 10px 10px 24px rgba(165, 180, 203, 0.45), -10px -10px 24px #FFFFFF, var(--clay-inset);
 }
 
 /* Elevated Sub-card Clay Styling (Used for smaller sub-cards or inputs) */
@@ -100,18 +96,19 @@
   border-radius: 20px;
   border: 1px solid var(--border-card);
   box-shadow: 
-    inset 1px 1px 3px rgba(255, 255, 255, 0.1), 
-    inset -1px -1px 3px rgba(0, 0, 0, 0.05),
-    2px 2px 8px rgba(0, 0, 0, 0.03);
+    inset 1px 1px 3px rgba(255, 255, 255, 1), 
+    inset -1.5px -1.5px 3px rgba(165, 180, 203, 0.12),
+    3px 3px 10px rgba(165, 180, 203, 0.15);
 }
 
 .dark .clay-card-sub {
-  background-color: #1F243D;
-  border-color: #2A314D;
+  background-color: var(--clay-bg);
+  border-radius: 20px;
+  border: 1px solid var(--border-card);
   box-shadow: 
-    inset 1px 1px 2px rgba(255, 255, 255, 0.05), 
-    inset -1px -1px 2px rgba(0, 0, 0, 0.3),
-    2px 2px 8px rgba(0, 0, 0, 0.2);
+    inset 1px 1px 3px rgba(255, 255, 255, 1), 
+    inset -1.5px -1.5px 3px rgba(165, 180, 203, 0.12),
+    3px 3px 10px rgba(165, 180, 203, 0.15);
 }
 
 /* Glassmorphism Header / Top Nav */

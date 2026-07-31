@@ -103,19 +103,19 @@ export const AICopilotView: React.FC<AICopilotProps> = ({
   const contentMarkup = (
     <div className="flex flex-col h-full clay-card overflow-hidden relative">
       {/* Header */}
-      <div className="p-5 flex items-center justify-between shrink-0 border-b border-[var(--border-card)] glass-navbar rounded-t-[28px]">
+      <div className="p-5 flex items-center justify-between shrink-0 border-b border-slate-100 bg-white/90 backdrop-blur-sm rounded-t-[28px]">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
             <Brain className="w-5 h-5 text-white" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="font-extrabold text-sm text-[var(--text-primary)]">AI Copilot</h3>
-              <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400">
+              <h3 className="font-black text-sm text-[#0F122A]">AI Copilot</h3>
+              <span className="text-[9px] font-black px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-600 uppercase tracking-wider">
                 Gemini RAG
               </span>
             </div>
-            <p className="text-[11px] text-[var(--text-muted)] font-medium mt-0.5">
+            <p className="text-[11px] text-[#8A99AD] font-bold mt-0.5">
               {activeStudent ? `Context: ${activeStudent.name}` : 'Class Dataset Loaded'}
             </p>
           </div>
@@ -124,7 +124,7 @@ export const AICopilotView: React.FC<AICopilotProps> = ({
         {isDrawer && onClose && (
           <button
             onClick={onClose}
-            className="p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors cursor-pointer text-[var(--text-muted)] hover:text-[var(--text-primary)] focus-ring"
+            className="p-2 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer text-[#8A99AD] hover:text-[#0F122A] focus-ring border border-transparent hover:border-slate-200"
           >
             <X className="w-5 h-5" />
           </button>
@@ -159,14 +159,14 @@ export const AICopilotView: React.FC<AICopilotProps> = ({
               <div
                 className={`max-w-[80%] p-4 text-xs sm:text-sm leading-relaxed font-medium ${
                   m.sender === 'user'
-                    ? 'bg-gradient-to-tr from-indigo-500 to-purple-600 text-white rounded-3xl rounded-br-sm shadow-[0_8px_20px_-4px_rgba(99,102,241,0.4)]'
-                    : 'clay-card rounded-3xl rounded-bl-sm text-[var(--text-secondary)] whitespace-pre-wrap'
+                    ? 'bg-gradient-to-tr from-indigo-500 to-purple-600 text-white rounded-3xl rounded-br-sm shadow-[0_8px_20px_-4px_rgba(99,102,241,0.35)]'
+                    : 'clay-card rounded-3xl rounded-bl-sm text-[#4A5568] whitespace-pre-wrap'
                 }`}
               >
                 {m.text}
                 <div
                   className={`text-[10px] mt-1.5 font-bold ${
-                    m.sender === 'user' ? 'text-indigo-200 text-right' : 'text-[var(--text-muted)]'
+                    m.sender === 'user' ? 'text-indigo-200 text-right' : 'text-[#8A99AD]'
                   }`}
                 >
                   {m.timestamp}
@@ -180,7 +180,7 @@ export const AICopilotView: React.FC<AICopilotProps> = ({
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex items-center gap-3 text-xs font-bold text-[var(--text-muted)] p-2"
+            className="flex items-center gap-3 text-xs font-bold text-[#8A99AD] p-2"
           >
             <div className="flex gap-1">
               {[0, 150, 300].map((delay) => (
@@ -203,7 +203,7 @@ export const AICopilotView: React.FC<AICopilotProps> = ({
           <button
             key={i}
             onClick={() => handleSend(s)}
-            className="text-[11px] font-bold clay-card-sub text-indigo-600 dark:text-indigo-400 px-3.5 py-2 rounded-xl whitespace-nowrap hover:border-indigo-300 dark:hover:border-indigo-700 transition-all focus-ring cursor-pointer"
+            className="text-[11px] font-black bg-indigo-50 text-indigo-600 border border-indigo-100 px-3.5 py-2 rounded-xl whitespace-nowrap hover:bg-indigo-100 hover:border-indigo-200 transition-all focus-ring cursor-pointer shrink-0"
           >
             {s}
           </button>
@@ -240,7 +240,7 @@ export const AICopilotView: React.FC<AICopilotProps> = ({
   if (isDrawer) {
     return (
       <div
-        className="fixed inset-y-0 right-0 z-50 w-full sm:w-[460px] bg-black/30 dark:bg-black/50 backdrop-blur-sm flex justify-end"
+        className="fixed inset-y-0 right-0 z-50 w-full sm:w-[460px] bg-black/20 backdrop-blur-sm flex justify-end"
         onClick={onClose}
       >
         <div
